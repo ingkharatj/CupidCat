@@ -79,9 +79,9 @@ const CardItem = ({
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
-            <Text style={styles.like}>
-              {/* <Icon name="like" /> */}
-            <MaterialCommunityIcons name="heart" size="25"/>
+            <Text style={styles.dislike}>
+              {/* <Icon name="dislike" /> */}
+            <MaterialCommunityIcons name="close" size="25"/>
 
             </Text>
           </TouchableOpacity>
@@ -89,22 +89,22 @@ const CardItem = ({
           <TouchableOpacity
             style={styles.button}
             onPress={() => {onPressRight(); Alert.alert(
-              "Alert Title",
-              "My Alert Msg",
+              "Match!",
+              "Now you can chat with with each other!",
               [
                 {
                   text: "Cancel",
                   onPress: () => console.log("Cancel Pressed"),
                   style: "cancel"
                 },
-                { text: "OK", onPress: () => console.log("OK Pressed") }
+                { text: "Chat Now", onPress: () => console.log("OK Pressed") }
               ],
               { cancelable: false }
             );}}
           >
-            <Text style={styles.dislike}>
-              {/* <Icon name="dislike" /> */}
-            <MaterialCommunityIcons name="close" size="25"/>
+            <Text style={styles.like}>
+              {/* <Icon name="like" /> */}
+            <MaterialCommunityIcons name="heart" size="25"/>
 
             </Text>
           </TouchableOpacity>
