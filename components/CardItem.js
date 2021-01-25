@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../assets/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, View, Image, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import Icon from './Icon';
 
 const CardItem = ({
@@ -88,7 +88,19 @@ const CardItem = ({
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => onPressRight()}
+            onPress={() => {onPressRight(); Alert.alert(
+              "Alert Title",
+              "My Alert Msg",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => console.log("Cancel Pressed"),
+                  style: "cancel"
+                },
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+              ],
+              { cancelable: false }
+            );}}
           >
             <Text style={styles.dislike}>
               {/* <Icon name="dislike" /> */}

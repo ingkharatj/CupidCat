@@ -14,7 +14,7 @@ module.exports = [{
         description: 'Sunny swa',
         status: 'Offline',
         message: "meowww",
-        image: require('../images/catpics/cat2.jpg')
+        image: require('../images/catpics/cat11.jpg')
     },
     {
         id: 3,
