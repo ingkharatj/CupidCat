@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../assets/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { Text, View, Image, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import Icon from './Icon';
 
 const CardItem = ({
@@ -45,7 +45,7 @@ const CardItem = ({
       {matches && (
         <View style={styles.matchesCardItem}>
           <Text style={styles.matchesTextCardItem}>
-            <Icon name="heart" /> {matches}% Match!
+             {matches}
 
           </Text>
         </View>
@@ -79,20 +79,32 @@ const CardItem = ({
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
-            <Text style={styles.like}>
-              {/* <Icon name="like" /> */}
-            <MaterialCommunityIcons name="heart" size="25"/>
+            <Text style={styles.dislike}>
+              {/* <Icon name="dislike" /> */}
+            <MaterialCommunityIcons name="close" size="25"/>
 
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => onPressRight()}
+            onPress={() => {onPressRight(); Alert.alert(
+              "Match!",
+              "Now you can chat with with each other!",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => console.log("Cancel Pressed"),
+                  style: "cancel"
+                },
+                { text: "Chat Now", onPress: () => console.log("OK Pressed") }
+              ],
+              { cancelable: false }
+            );}}
           >
-            <Text style={styles.dislike}>
-              {/* <Icon name="dislike" /> */}
-            <MaterialCommunityIcons name="close" size="25"/>
+            <Text style={styles.like}>
+              {/* <Icon name="like" /> */}
+            <MaterialCommunityIcons name="heart" size="25"/>
 
             </Text>
           </TouchableOpacity>
