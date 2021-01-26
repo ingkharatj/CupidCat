@@ -2,6 +2,7 @@ import React from 'react';
 import { View, ImageBackground } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 import City from '../components/City';
+import Middle from '../components/Middle';
 import Filters from '../components/Filters';
 import CardItem from '../components/CardItem';
 import styles from '../assets/styles';
@@ -16,6 +17,7 @@ const Home = () => {
       <View style={styles.containerHome}>
         <View style={styles.top}>
           <City />
+          <Middle />
           <Filters />
         </View>
 
