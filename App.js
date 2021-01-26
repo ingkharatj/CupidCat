@@ -7,14 +7,35 @@ import HomeScreen from "./containers/Home";
 import MatchesScreen from "./containers/Matches";
 import MessagesScreen from "./containers/Messages";
 import ProfileScreen from "./containers/Profile";
+import LoginScreen from "./containers/Login";
 import Icon from "./components/Icon";
 import styles from "./assets/styles";
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
 
 
 
-const Tab = createBottomTabNavigator();
+const navigation = createStackNavigator(
+  {
+    Login : LoginScreen,
+    Home : HomeScreen,
+    
+},
+{
+  initialRouteParams : "Login",
+    defaultNavigationOptions: { 
+      title: "CupidCat"
+  }
+}
+);
+
+const Tab = createBottomTabNavigator(
+
+
+);
 
 function MyTabs() {
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -27,12 +48,12 @@ function MyTabs() {
         component={HomeScreen}
         options={{
           tabBarLabel: 'Explore',
-          tabBarIcon: ({ color,size }) => {
+          tabBarIcon: ({ color, size }) => {
             // const iconFocused = focused ? "#7444C0" : "#363636";
             return (
               <Text style={[styles.iconMenu]}>
                 {/* <Icon name="explore" /> */}
-                <MaterialCommunityIcons name="magnify" color={color} size={size}/>
+                <MaterialCommunityIcons name="magnify" color={color} size={size} />
               </Text>
             );
           }
@@ -43,12 +64,12 @@ function MyTabs() {
         component={MatchesScreen}
         options={{
           tabBarLabel: 'Match',
-          tabBarIcon: ({ color,size }) => {
+          tabBarIcon: ({ color, size }) => {
             // const iconFocused = focused ? "#7444C0" : "#363636";
             return (
               <Text style={[styles.iconMenu,]}>
                 {/* <Icon name="heart" /> */}
-                <MaterialCommunityIcons name="heart" color={color} size={size}/>
+                <MaterialCommunityIcons name="heart" color={color} size={size} />
 
               </Text>
             );
@@ -60,12 +81,12 @@ function MyTabs() {
         component={MessagesScreen}
         options={{
           tabBarLabel: 'Message',
-          tabBarIcon: ({ color,size }) => {
+          tabBarIcon: ({ color, size }) => {
             // const iconFocused = focused ? "#7444C0" : "#363636";
             return (
               <Text style={[styles.iconMenu,]}>
-                 {/* <Icon name="chat" /> */}
-                <MaterialCommunityIcons name="chat" color={color} size={size}/>
+                {/* <Icon name="chat" /> */}
+                <MaterialCommunityIcons name="chat" color={color} size={size} />
 
               </Text>
             );
@@ -77,12 +98,12 @@ function MyTabs() {
         component={ProfileScreen}
         options={{
           tabBarLabel: 'Profile',
-          tabBarIcon: ({ color,size }) => {
+          tabBarIcon: ({ color, size }) => {
             // const iconFocused = focused ? "#7444C0" : "#363636";
             return (
-              <Text style={[styles.iconMenu, ]}>
+              <Text style={[styles.iconMenu,]}>
                 {/* <Icon name="user" /> */}
-                <MaterialCommunityIcons name="cat" color={color} size={size}/>
+                <MaterialCommunityIcons name="cat" color={color} size={size} />
               </Text>
             );
           }
@@ -93,10 +114,11 @@ function MyTabs() {
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
-  );
-}
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <MyTabs />
+//     </NavigationContainer>
+//   );
+// }
+export default createAppContainer(navigation);
