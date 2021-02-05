@@ -1,11 +1,14 @@
+import { TabActions } from "@react-navigation/native";
 import React from "react";
 import { Text, StyleSheet, View, TouchableOpacity, TextInput } from "react-native";
+// import styles from '../assets/styles';
+
 // import firebase from 'firebase';
 import { Button } from 'react-native-elements';
 
 
 
-class LoginScreen extends React.Component {
+const LoginScreen = ({ navigation }) => {
 
     // state = {
     //     email: '',
@@ -47,70 +50,69 @@ class LoginScreen extends React.Component {
     //       })
     //   }
 
-    render() {
 
 
-        return (
+    return (
 
-            <View style={styles.backgroundStyle}>
-                <Text style={styles.text}>CupidCat</Text>
-                <Text style={{ right: 120, top: 100, color: 'lightblue', fontSize: 20, fontWeight: '700' }}>Email :</Text>
-                <Text style={{ right: 100, top: 140, color: 'lightblue', fontSize: 20, fontWeight: '700' }}>Password :</Text>
+        <View style={styles.backgroundStyle}>
+            <Text style={styles.text}>CupidCat</Text>
+            <Text style={{ right: 120, top: 100, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Email :</Text>
+            <Text style={{ right: 100, top: 140, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Password :</Text>
 
-                <TextInput
+            <TextInput
 
-                    style={styles.email}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    placeholder="  Enter your email"
-                // onChangeText={str => this.setState({email:str})}
+                style={styles.email}
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholder="  Enter your email"
+            // onChangeText={str => this.setState({email:str})}
 
+
+            />
+            <TextInput
+                style={styles.input}
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholder="  Enter your password"
+                secureTextEntry={true}
+
+                // onChangeText= {password => this.setState({password})}
+                style={styles.password}
+            />
+            <View style={styles.signin}>
+                <Button title='SignIn'
+                    buttonStyle={{
+                        backgroundColor: "#7DC9DA",
+
+                    }}
+                    onPress={() => navigation.navigate('Main')}
+
+                // onPress={this.onLoginButtonPress}
+                />
+            </View>
+            <View style={styles.signup}>
+                <Button title='SignUp'
+                    buttonStyle={{
+                        backgroundColor: "#7DC9DA"
+                    }}
+                    success
+                // onPress={this.onSignUpPress}
 
                 />
-                <TextInput
-                    style={styles.input}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    placeholder="  Enter your password"
-                    secureTextEntry={true}
-
-                    // onChangeText= {password => this.setState({password})}
-                    style={styles.password}
-                />
-                <View style={styles.signin}>
-                    <Button title='SignIn'
-                        buttonStyle={{
-                            backgroundColor: "lightblue",
-
-                        }}
-                        onPress={() => navigation.navigate('Home')}
-
-                    // onPress={this.onLoginButtonPress}
-                    />
-                </View>
-                <View style={styles.signup}>
-                    <Button title='SignUp'
-                        buttonStyle={{
-                            backgroundColor: "lightblue"
-                        }}
-                        success
-                    // onPress={this.onSignUpPress}
-
-                    />
-                </View>
-
             </View>
 
-        )
-    }
+        </View>
+
+    )
+
 };
 
 const styles = StyleSheet.create({
     text: {
         fontSize: 48,
         fontWeight: "bold",
-        color: '#27EFA6',
-        marginTop: 50,
+        color: '#7BD4E8',
+        marginTop: 100,
 
 
     },
@@ -118,8 +120,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: 170,
         height: 27,
-        left: 150,
-        top: 208,
+        left: 170,
+        top: 258,
         backgroundColor: '#FFFFFF',
         borderRadius: 5,
     },
@@ -127,13 +129,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: 170,
         height: 27,
-        left: 150,
-        top: 270,
+        left: 170,
+        top: 320,
         backgroundColor: '#FFFFFF',
         borderRadius: 5,
     },
     backgroundStyle: {
-        backgroundColor: '#4F4F4F',
+        backgroundColor: '#F0FCFF',
         flex: 1,
         alignItems: 'center',
 
