@@ -104,7 +104,7 @@ const CardItem = ({
           >
             <Text style={styles.like}>
               {/* <Icon name="like" /> */}
-            <MaterialCommunityIcons name="heart" size="25"/>
+            <MaterialCommunityIcons name="heart" size="25" color="#EC8843"/>
 
             </Text>
           </TouchableOpacity>

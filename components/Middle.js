@@ -10,7 +10,7 @@ const Middle = () => {
   return (
 
       <Text style={styles.cityText}>
-        Cupid Cat
+       
         
       </Text>
 

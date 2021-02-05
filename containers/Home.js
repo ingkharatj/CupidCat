@@ -18,7 +18,7 @@ const Home = () => {
         <View style={styles.top}>
           <City />
           <Middle />
-          <Filters />
+          {/* <Filters /> */}
         </View>
 
         <CardStack

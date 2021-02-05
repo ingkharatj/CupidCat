@@ -36,16 +36,16 @@ module.exports = [{
     },
     {
         id: 5,
-        name: 'James Dietrich',
+        name: 'Mome',
         match: 'Exotic Shorthair',
-        description: 'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
+        description: 'meow',
         status: 'Offline',
         message: "It's not who I am underneath but what I do that defines me.",
         image: require('../images/catpics/cat5.jpg')
     },
     {
         id: 6,
-        name: 'Patricia Schulist',
+        name: 'Patric',
         match: 'Persian',
         description: 'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
         status: 'Online',
@@ -54,7 +54,7 @@ module.exports = [{
     },
     {
         id: 7,
-        name: 'Chelsey Weissnat',
+        name: 'Chelsey',
         match: 'Mixed Shorthair',
         description: 'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
         status: 'Online',
@@ -78,7 +78,7 @@ module.exports = [{
     },
     {
         id: 9,
-        name: 'Glenna Reichert',
+        name: 'Um',
         match: 'British Shorthair',
         description: 'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
         status: 'Online',
@@ -87,7 +87,7 @@ module.exports = [{
     },
     {
         id: 10,
-        name: 'Kurtis DuBuque',
+        name: 'Popo',
         match: 'Persian',
         description: 'Full-time Traveller. Globe Trotter. Occasional Photographer. Part time Singer/Dancer.',
         status: 'Offline',

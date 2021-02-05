@@ -1,21 +1,22 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const PRIMARY_COLOR = "#7444C0";
-const SECONDARY_COLOR = "#5636B8";
+const PRIMARY_COLOR = "#7BD4E8";
+const SECONDARY_COLOR = "#7DC9DA";
 const WHITE = "#FFFFFF";
 const GRAY = "#757E90";
 const DARK_GRAY = "#363636";
 const BLACK = "#000000";
+const BLUE = "#76E7F0";
 
 const ONLINE_STATUS = "#46A575";
 const OFFLINE_STATUS = "#D04949";
 
-const STAR_ACTIONS = "#FFA200";
+const STAR_ACTIONS = "#F23B1C";
 const LIKE_ACTIONS = "#B644B2";
 const DISLIKE_ACTIONS = "#363636";
 const FLASH_ACTIONS = "#5028D7";
 
-const ICON_FONT = "tinderclone";
+// const ICON_FONT = "tinderclone";
 
 const DIMENSION_WIDTH = Dimensions.get("window").width;
 const DIMENSION_HEIGHT = Dimensions.get("window").height;
@@ -40,7 +41,7 @@ export default StyleSheet.create({
         borderRadius: 20
     },
     matchesTextCardItem: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         color: WHITE
     },
     descriptionCardItem: {
@@ -103,27 +104,27 @@ export default StyleSheet.create({
         shadowOffset: { height: 10, width: 0 }
     },
     star: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         color: STAR_ACTIONS
     },
     like: {
         fontSize: 25,
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         color: LIKE_ACTIONS
     },
     dislike: {
         fontSize: 25,
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         color: DISLIKE_ACTIONS
     },
     flash: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         color: FLASH_ACTIONS
     },
 
     // COMPONENT - CITY
     city: {
-        backgroundColor: WHITE,
+        backgroundColor: PRIMARY_COLOR,
         padding: 10,
         borderRadius: 20,
         width: 90,
@@ -133,7 +134,7 @@ export default StyleSheet.create({
         shadowOffset: { height: 0, width: 0 }
     },
     cityText: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         color: DARK_GRAY,
         fontSize: 13
     },
@@ -150,7 +151,7 @@ export default StyleSheet.create({
         shadowOffset: { height: 0, width: 0 }
     },
     filtersText: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         color: DARK_GRAY,
         fontSize: 13
     },
@@ -201,14 +202,14 @@ export default StyleSheet.create({
         alignSelf: "center"
     },
     matchesTextProfileItem: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         color: WHITE
     },
     name: {
         paddingTop: 25,
         paddingBottom: 5,
         color: DARK_GRAY,
-        fontSize: 15,
+        fontSize: 25,
         textAlign: "center"
     },
     descriptionProfileItem: {
@@ -223,7 +224,7 @@ export default StyleSheet.create({
         alignItems: "center"
     },
     iconProfile: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         fontSize: 12,
         color: DARK_GRAY,
         paddingHorizontal: 10
@@ -249,7 +250,7 @@ export default StyleSheet.create({
     },
     title: { paddingBottom: 10, fontSize: 22, color: DARK_GRAY },
     icon: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         fontSize: 20,
         color: DARK_GRAY,
         paddingRight: 10
@@ -272,6 +273,15 @@ export default StyleSheet.create({
         paddingHorizontal: 10
     },
 
+    // CONTAINER - TRANSLATE
+
+    containerTranslate: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+
     // CONTAINER - PROFILE
     containerProfile: { marginHorizontal: 0 },
     photo: {
@@ -279,7 +289,7 @@ export default StyleSheet.create({
         height: 450
     },
     topIconLeft: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         fontSize: 20,
         color: WHITE,
         paddingLeft: 20,
@@ -287,7 +297,7 @@ export default StyleSheet.create({
         transform: [{ rotate: "90deg" }]
     },
     topIconRight: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         fontSize: 20,
         color: WHITE,
         paddingRight: 20
@@ -297,9 +307,11 @@ export default StyleSheet.create({
         flexDirection: "row",
         alignItems: "center"
     },
-    iconButton: { fontFamily: ICON_FONT, fontSize: 20, color: WHITE },
+    iconButton: { 
+        // fontFamily: ICON_FONT
+         fontSize: 20, color: WHITE },
     textButton: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         fontSize: 15,
         color: WHITE,
         paddingLeft: 5
@@ -309,6 +321,15 @@ export default StyleSheet.create({
         height: 50,
         borderRadius: 25,
         backgroundColor: PRIMARY_COLOR,
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: 10
+    },
+    bigcircledButton: {
+        width: 200,
+        height: 200,
+        borderRadius: 100,
+        backgroundColor: "#AFE4F0",
         justifyContent: "center",
         alignItems: "center",
         marginRight: 10
@@ -336,7 +357,7 @@ export default StyleSheet.create({
         textTransform: "uppercase"
     },
     iconMenu: {
-        fontFamily: ICON_FONT,
+        // fontFamily: ICON_FONT,
         height: 20,
         paddingBottom: 25
     }

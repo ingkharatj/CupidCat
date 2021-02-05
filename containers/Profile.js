@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from '../assets/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-
 import {
   ScrollView,
   View,
@@ -11,7 +9,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 import ProfileItem from '../components/ProfileItem';
-import Icon from '../components/Icon';
+// import Icon from '../components/Icon';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Demo from '../assets/data/demo.js';
 
 const Profile = () => {
@@ -37,14 +36,12 @@ const Profile = () => {
           <View style={styles.top}>
             <TouchableOpacity>
               <Text style={styles.topIconLeft}>
-                <Icon name="chevronLeft" />
+                {/* <Icon name="chevronLeft" /> */}
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity>
-              <Text style={styles.topIconRight}>
-                <Icon name="optionsV" />
-              </Text>
+                <Icon name="cog" size = "25" style={styles.topIconRight}/>
             </TouchableOpacity>
           </View>
         </ImageBackground>
@@ -61,17 +58,17 @@ const Profile = () => {
         />
 
         <View style={styles.actionsProfile}>
-          <TouchableOpacity style={styles.circledButton}>
-            <Text style={styles.iconButton}>
-              <Icon name="optionsH" />
+          <TouchableOpacity style={styles.roundedButton}>
+            <Text style={styles.textButton}> Certified Pedigree
+              {/* <Icon name="optionsH" /> */}
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.roundedButton}>
             <Text style={styles.iconButton}>
-              <Icon name="chat" />
+              {/* <Icon name="chat" /> */}
             </Text>
-            <Text style={styles.textButton}>Start chatting</Text>
+            <Text style={styles.textButton}>Add Picture</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
