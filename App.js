@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
+import firebase from "firebase/app";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from "./containers/Home";
@@ -16,6 +17,22 @@ import { createAppContainer } from '@react-navigation/native';
 import { NavigationContainer } from "@react-navigation/native";
 
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBtT4zHzNlg_hSGyayWUJTRqCoxiJw0rLM",
+  authDomain: "cupidcat-2b0e7.firebaseapp.com",
+  // databaseURL:"https://cupidcat-2b0e7-default-rtdb.firebaseio.com",
+  
+  projectId: "cupidcat-2b0e7",
+  storageBucket: "cupidcat-2b0e7.appspot.com",
+  messagingSenderId: "455335954698",
+  appId: "1:455335954698:web:f175cdf0868e37aa9992f3",
+  measurementId: "G-9LTYPNKB3W"
+};
+
+firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
+
+
 const Tab = createBottomTabNavigator(
 
 );
@@ -26,7 +43,7 @@ const MainNavigator = () => {
   return (<Tab.Navigator
     tabBarOptions={{
       activeTintColor: '#22B2D3',
-      
+
     }}
   >
 
@@ -129,10 +146,10 @@ export default function App() {
           component={LoginScreen}
           options={{
             headerShown: false
-            
+
             // tabBarVisible: false,
-            
-            
+
+
             // tabBarVisible: getTabBarVisibility(route),
           }}
 
@@ -143,7 +160,7 @@ export default function App() {
           options={{
             headerShown: false
             // tabBarVisible: false,
-            
+
             // tabBarVisible: getTabBarVisibility(route),
           }}
 

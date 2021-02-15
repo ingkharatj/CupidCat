@@ -1,5 +1,7 @@
 import { TabActions } from "@react-navigation/native";
 import React from "react";
+import firebase from 'firebase';
+
 import { Text, StyleSheet, View, TouchableOpacity, TextInput } from "react-native";
 // import styles from '../assets/styles';
 
@@ -8,103 +10,109 @@ import { Button } from 'react-native-elements';
 
 
 
-const LoginScreen = ({ navigation }) => {
-
-    // state = {
-    //     email: '',
-    //     password: '',
-    //   }
-
-    //   componentDidMount() {
-    //     this.authSubscription = firebase.auth().onAuthStateChanged(user => {
-    //       this.setState({
-    //         loading: false,
-    //         user
-    //       });
-    //     });
-    //   }
-    //   componentWillUnmount() {
-    //     this.authSubscription();
-    //   }
-
-    //   onSignUpPress = () => {
-    //     firebase
-    //       .auth()
-    //       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-    //       .then(() => {
-    //         alert('Sign up Success')
-    //       })
-    //       .catch(msgError => {
-    //         alert('Sign up error')
-    //       })
-    //   }
-    //   onLoginButtonPress = () => {
-    //     firebase
-    //       .auth()
-    //       .signInWithEmailAndPassword(this.state.email, this.state.password)
-    //       .then(() => {
-    //         this.props.navigation.navigate('Infor')
-    //       })
-    //       .catch(msgError => {
-    //         alert('Login error please check your email or password.')
-    //       })
-    //   }
+// const LoginScreen = ({ navigation }) => {
+class LoginScreen extends React.Component {
 
 
+    state = {
+        email: '',
+        password: '',
+    }
 
-    return (
+    componentDidMount() {
+        this.authSubscription = firebase.auth().onAuthStateChanged(user => {
+            this.setState({
+                loading: false,
+                user
+            });
+        });
+    }
+    componentWillUnmount() {
+        this.authSubscription();
+    }
 
-        <View style={styles.backgroundStyle}>
-            <Text style={styles.text}>CupidCat</Text>
-            <Text style={{ right: 120, top: 100, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Email :</Text>
-            <Text style={{ right: 100, top: 140, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Password :</Text>
+    onSignUpPress = () => {
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(() => {
+                alert('Sign up Success')
+            })
+            .catch(msgError => {
+                alert('Sign up error')
+            })
+    }
+    onLoginButtonPress = () => {
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then(() => {
+                this.props.navigation.navigate('Main')
+            })
+            .catch(msgError => {
+                alert('Login error please check your email or password.')
+            })
+    }
+    render() {
 
-            <TextInput
-
-                style={styles.email}
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="  Enter your email"
-            // onChangeText={str => this.setState({email:str})}
 
 
-            />
-            <TextInput
-                style={styles.input}
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="  Enter your password"
-                secureTextEntry={true}
 
-                // onChangeText= {password => this.setState({password})}
-                style={styles.password}
-            />
-            <View style={styles.signin}>
-                <Button title='SignIn'
-                    buttonStyle={{
-                        backgroundColor: "#7DC9DA",
+        return (
 
-                    }}
-                    onPress={() => navigation.navigate('Main')}
+            <View style={styles.backgroundStyle}>
+                <Text style={styles.text}>CupidCat</Text>
+                <Text style={{ right: 120, top: 100, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Email :</Text>
+                <Text style={{ right: 100, top: 140, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Password :</Text>
 
-                // onPress={this.onLoginButtonPress}
-                />
-            </View>
-            <View style={styles.signup}>
-                <Button title='SignUp'
-                    buttonStyle={{
-                        backgroundColor: "#7DC9DA"
-                    }}
-                    success
-                // onPress={this.onSignUpPress}
+                <TextInput
+
+                    style={styles.email}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    placeholder="  Enter your email"
+                    onChangeText={str => this.setState({ email: str })}
+
 
                 />
+                <TextInput
+                    style={styles.input}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    placeholder="  Enter your password"
+                    secureTextEntry={true}
+
+                    onChangeText={password => this.setState({ password })}
+                    style={styles.password}
+                />
+                <View style={styles.signin}>
+                    <Button title='SignIn'
+                        buttonStyle={{
+                            backgroundColor: "#7DC9DA",
+
+                        }}
+                        // onPress={() => navigation.navigate('Main')}
+
+                        onPress={this.onLoginButtonPress}
+                    />
+                </View>
+                <View style={styles.signup}>
+                    <Button title='SignUp'
+                        buttonStyle={{
+                            backgroundColor: "#7DC9DA"
+                        }}
+                        success
+                        onPress={this.onSignUpPress}
+                        // onPress={() => navigation.navigate('Register')}
+
+
+                    />
+                </View>
+
             </View>
 
-        </View>
-
-    )
-
+        )
+    }
 };
 
 const styles = StyleSheet.create({
