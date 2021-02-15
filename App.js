@@ -128,6 +128,8 @@ export default function App() {
           name="Login"
           component={LoginScreen}
           options={{
+            headerShown: false
+            
             // tabBarVisible: false,
             
             
@@ -139,6 +141,7 @@ export default function App() {
           name="Main"
           component={MainNavigator}
           options={{
+            headerShown: false
             // tabBarVisible: false,
             
             // tabBarVisible: getTabBarVisibility(route),
