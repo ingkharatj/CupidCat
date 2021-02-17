@@ -10,28 +10,10 @@ import { Text, StyleSheet, View, TouchableOpacity, TextInput } from "react-nativ
 import "firebase/auth";
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
-import * as Facebook from "expo-facebook";
-
+import * as Facebook from 'expo-facebook';
 
 
 // class LoginScreen extends React.Component {
-
-
-//     // async loginWithFacebook() {
-
-//     //     //ENTER YOUR APP ID 
-//     //     const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('760729524865231', { permissions: ['public_profile'] })
-
-//     //     if (type == 'success') {
-
-//     //         const credential = firebase.auth.FacebookAuthProvider.credential(token)
-
-//     //         firebase.auth().signInWithCredential(credential).catch((error) => {
-//     //             console.log(error)
-//     //         })
-//     //     }
-//     // }
-
 
 //     state = {
 //         email: '',
@@ -272,23 +254,41 @@ export default class LoginScreen extends React.Component {
     }
 
     async loginWithFacebook() {
+        try {
+            await Facebook.initializeAsync({
+                appId: '760729524865231',
+            });
+            const {
+                type,
+                token,
+                expirationDate,
+                permissions,
+                declinedPermissions,
+            } = await Facebook.logInWithReadPermissionsAsync({
+                permissions: ['public_profile'],
+            });
+            // if (type == 'success') {
 
-        //ENTER YOUR APP ID 
-        // const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('760729524865231', { permissions: ['public_profile'] })
-        const { type, token } = await
-            Facebook.logInWithReadPermissionsAsync(
-                "760729524865231", {
-                permission: "public_profile"
+            //     const credential = firebase.auth.FacebookAuthProvider.credential(token)
+
+            //     firebase.auth().signInWithCredential(credential).catch((error) => {
+            //         console.log(error)
+            //     })
+            // }
+            if (type === 'success') {
+                // Get the user's name using Facebook's Graph API
+                const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+                Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
             }
-            );
-        if (type == 'success') {
 
-            const credential = firebase.auth.FacebookAuthProvider.credential(token)
-
-            firebase.auth().signInWithCredential(credential).catch((error) => {
-                console.log(error)
-            })
+            else {
+                type === 'cancel'
+            }
+        } catch ({ message }) {
+            alert(`Facebook Login Error: ${message}`);
         }
+
+
     }
 
     render() {
@@ -320,6 +320,7 @@ export default class LoginScreen extends React.Component {
                         rounded
                         success
                         onPress={() => this.loginUser(this.state.email, this.state.password)}
+                        onPress={() => navigation.navigate('Main')}
                     >
                         <Text style={{ color: 'white' }}> Login</Text>
                     </Button>
