@@ -41,7 +41,10 @@ class LoginScreen extends React.Component {
                 alert('Sign up Success')
             })
             .catch(msgError => {
-                alert('Sign up error')
+                if(this.state.password.length<6){
+                    alert('Password')
+                }else{alert('User')}
+                
             })
     }
     onLoginButtonPress = () => {
