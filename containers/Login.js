@@ -113,12 +113,25 @@ class LoginScreen extends React.Component {
                       style={{ width: 200, height: 200 }}
                       />
 
+                <View style={styles.facebook_signup}>
+                    <Button
+                        title='Login With Facebook'
+                        buttonStyle={{
+                            backgroundColor: "#7DC9DA"
+                        }}
+                        success
+                        onPress={() => this.loginWithFacebook()}
+                    />
 
+                </View>
+
+                <View>
                 <Text style={{ right: 120, top: 100, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Email :</Text>
                 <Text style={{ right: 100, top: 140, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Password :</Text>
+                </View>
 
+                <View>
                 <TextInput
-
                     // style={styles.email}
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -137,6 +150,11 @@ class LoginScreen extends React.Component {
                     onChangeText={password => this.setState({ password })}
                     // style={styles.password}
                 />
+                </View>
+                
+{/* test */}
+                {/* <TextInput style={styles.input}                     placeholder="  Enter yasdour email"
+/> */}
 
 
                 <View style={styles.signin}>
@@ -162,17 +180,7 @@ class LoginScreen extends React.Component {
 
                     />
                 </View>
-                <View style={styles.facebook_signup}>
-                    <Button
-                        title='Login With Facebook'
-                        buttonStyle={{
-                            backgroundColor: "#7DC9DA"
-                        }}
-                        success
-                        onPress={() => this.loginWithFacebook()}
-                    />
-
-                </View>
+            
 
 
             </View>
