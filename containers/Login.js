@@ -6,7 +6,7 @@ import { Text, StyleSheet, View, TouchableOpacity, TextInput } from "react-nativ
 // import styles from '../assets/styles';
 
 // import firebase from 'firebase';
-import { Button } from 'react-native-elements';
+import { Button, Image } from 'react-native-elements';
 import "firebase/auth";
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 // import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
@@ -105,12 +105,21 @@ class LoginScreen extends React.Component {
 
             <View style={styles.backgroundStyle}>
                 <Text style={styles.text}>CupidCat</Text>
+                <Image 
+                      source={require('../assets/images/catpics/logotest.png')}
+                      ></Image>
+                      <Image
+                      source={require('../assets/images/catpics/logotest.png')}
+                      style={{ width: 200, height: 200 }}
+                      />
+
+
                 <Text style={{ right: 120, top: 100, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Email :</Text>
                 <Text style={{ right: 100, top: 140, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Password :</Text>
 
                 <TextInput
 
-                    style={styles.email}
+                    // style={styles.email}
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder="  Enter your email"
@@ -119,15 +128,17 @@ class LoginScreen extends React.Component {
 
                 />
                 <TextInput
-                    style={styles.input}
+                    // style={styles.input}
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder="  Enter your password"
                     secureTextEntry={true}
 
                     onChangeText={password => this.setState({ password })}
-                    style={styles.password}
+                    // style={styles.password}
                 />
+
+
                 <View style={styles.signin}>
                     <Button title='SignIn'
                         buttonStyle={{
