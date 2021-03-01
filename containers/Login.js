@@ -11,6 +11,7 @@ import "firebase/auth";
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 // import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 import * as Facebook from 'expo-facebook';
+import { max } from "react-native-reanimated";
 
 
 
@@ -105,34 +106,25 @@ class LoginScreen extends React.Component {
 
             <View style={styles.backgroundStyle}>
                 <Text style={styles.text}>CupidCat</Text>
-                <Image 
+                {/* <Image 
                       source={require('../assets/images/catpics/logotest.png')}
-                      ></Image>
+                      ></Image> */}
                       <Image
-                      source={require('../assets/images/catpics/logotest.png')}
+                      source={require('../assets/images/catpics/catlogo.png')}
                       style={{ width: 200, height: 200 }}
                       />
 
-                <View style={styles.facebook_signup}>
-                    <Button
-                        title='Login With Facebook'
-                        buttonStyle={{
-                            backgroundColor: "#7DC9DA"
-                        }}
-                        success
-                        onPress={() => this.loginWithFacebook()}
-                    />
+              
 
-                </View>
-
-                <View>
+                {/* <View>
                 <Text style={{ right: 120, top: 100, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Email :</Text>
                 <Text style={{ right: 100, top: 140, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Password :</Text>
-                </View>
+                </View> */}
 
-                <View>
+
+                <View style={styles.loginbox}>
                 <TextInput
-                    // style={styles.email}
+                    style={styles.loginregister}
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder="  Enter your email"
@@ -141,7 +133,7 @@ class LoginScreen extends React.Component {
 
                 />
                 <TextInput
-                    // style={styles.input}
+                    style={styles.loginregister}
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder="  Enter your password"
@@ -151,7 +143,8 @@ class LoginScreen extends React.Component {
                     // style={styles.password}
                 />
                 </View>
-                
+
+
 {/* test */}
                 {/* <TextInput style={styles.input}                     placeholder="  Enter yasdour email"
 /> */}
@@ -160,9 +153,11 @@ class LoginScreen extends React.Component {
                 <View style={styles.signin}>
                     <Button title='SignIn'
                         buttonStyle={{
-                            backgroundColor: "#7DC9DA",
+                            backgroundColor: "#7DC9DA",        width: 250,
+                            height: 40, fontSize: 18,        borderRadius: 15,
 
-                        }}
+
+                        }} style={styles.longbutton}
                         onPress={() => navigation.navigate('Main')}
 
                         onPress={this.onLoginButtonPress}
@@ -171,7 +166,9 @@ class LoginScreen extends React.Component {
                 <View style={styles.signup}>
                     <Button title='SignUp'
                         buttonStyle={{
-                            backgroundColor: "#7DC9DA"
+                            backgroundColor: "#7DC9DA",width: 250,
+                            height: 40, fontSize: 18,        borderRadius: 15,
+
                         }}
                         success
                         onPress={this.onSignUpPress}
@@ -179,6 +176,20 @@ class LoginScreen extends React.Component {
 
 
                     />
+                </View>
+
+                <View style={styles.signup}>
+                    <Button
+                        title='Login With Facebook'
+                        buttonStyle={{
+                            backgroundColor: "#7DC9DA",width: 250,
+                            height: 40, fontSize: 18,        borderRadius: 15,
+
+                        }}
+                        success
+                        onPress={() => this.loginWithFacebook()}
+                    />
+
                 </View>
             
 
@@ -214,7 +225,7 @@ const styles = StyleSheet.create({
         left: 170,
         top: 320,
         backgroundColor: '#FFFFFF',
-        borderRadius: 5,
+        borderRadius: 20,
     },
     backgroundStyle: {
         backgroundColor: '#F0FCFF',
@@ -223,17 +234,23 @@ const styles = StyleSheet.create({
 
     },
     signin: {
-        alignItems: "center",
-        top: 200,
+        marginTop:50,
+        width: 250,
+        height: 35,
+        fontSize: 18,
         fontWeight: 'bold',
-        fontSize: 20,
+        alignItems: "center",
+
 
     },
     signup: {
-        top: 200,
+
+        marginTop:20,
+        width: 250,
+        height: 35,
         alignItems: "center",
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 18,
 
 
     },
@@ -251,6 +268,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10
     },
+    loginregister:{
+        borderRadius: 25,
+        borderColor:"#7BD4E8",
+        width: 250,
+        height: 35,
+        fontSize: 20,
+        alignItems: "center",
+        fontWeight: "bold",
+        color: '#7BD4E8',
+        marginTop: 20,
+        backgroundColor: "white",
+
+    },
+    loginbox:{
+        marginTop:20
+    }
 
 });
 
