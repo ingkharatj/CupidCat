@@ -1,25 +1,25 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js start
+  /opt/homebrew/Cellar/node/15.8.0/bin/node /opt/homebrew/bin/yarn start
 
 PATH: 
-  /Library/Frameworks/Python.framework/Versions/3.8/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Library/Frameworks/Python.framework/Versions/3.8/bin:/Users/ing/.npm-global/bin:/Users/ing/Library/flutter/bin:/Users/ing/.npm-global/bin:/Users/ing/Library/flutter/bin
+  /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/homebrew/bin:/opt/homebrew/sbin
 
 Yarn version: 
-  1.22.4
+  1.22.10
 
 Node version: 
-  12.16.1
+  15.8.0
 
 Platform: 
-  darwin x64
+  darwin arm64
 
 Trace: 
-  SyntaxError: /Users/ing/Documents/Ingwork/CupidCat/package.json: Unexpected token < in JSON at position 1564
+  SyntaxError: /Users/thaksina/CupidCat/package.json: Unexpected token < in JSON at position 1564
       at JSON.parse (<anonymous>)
-      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:1625:59
+      at /opt/homebrew/lib/node_modules/yarn/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
-      at step (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:310:30)
-      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:321:13
+      at step (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /opt/homebrew/lib/node_modules/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {
