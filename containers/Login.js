@@ -1,50 +1,51 @@
 import { TabActions } from "@react-navigation/native";
 import React from "react";
 import firebase from 'firebase';
-
 import { Text, StyleSheet, View, TouchableOpacity, TextInput } from "react-native";
 // import styles from '../assets/styles';
-
 // import firebase from 'firebase';
 import { Button } from 'react-native-elements';
-import "firebase/auth";
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 // import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 import * as Facebook from 'expo-facebook';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 class LoginScreen extends React.Component {
 
-    state = {
-        email: '',
-        password: '',
+    // state = {
+    //     email: '',
+    //     password: '',
+    // }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+            // name: ''
+        }
+
+        this.onSignUp = this.onSignUp.bind(this)
     }
 
-    componentDidMount() {
-        this.authSubscription = firebase.auth().onAuthStateChanged(user => {
-            this.setState({
-                loading: false,
-                user
-            });
-        });
-    }
-    componentWillUnmount() {
-        this.authSubscription();
+    // componentDidMount() {
+    //     this.authSubscription = firebase.auth().onAuthStateChanged(user => {
+    //         this.setState({
+    //             loading: false,
+    //             user
+    //         });
+    //     });
+    // }
+    // componentWillUnmount() {
+    //     this.authSubscription();
+    // }
+
+    onSignUp() {
+        this.props.navigation.navigate('Register')
     }
 
-    onSignUpPress = () => {
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => {
-                alert('Sign up Success')
-            })
-            .catch(msgError => {
-                alert('Sign up error')
-            })
-    }
-    onLoginButtonPress = () => {
+    Login = () => {
         firebase
             .auth()
             .signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -90,10 +91,7 @@ class LoginScreen extends React.Component {
             alert(`Facebook Login Error: ${message}`);
         }
 
-
     }
-
-
 
     render() {
 
@@ -102,17 +100,15 @@ class LoginScreen extends React.Component {
 
             <View style={styles.backgroundStyle}>
                 <Text style={styles.text}>CupidCat</Text>
-                <Text style={{ right: 120, top: 100, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Email :</Text>
-                <Text style={{ right: 100, top: 140, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Password :</Text>
+                <Text style={{ right: 120, top: 140, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Email :</Text>
+                <Text style={{ right: 100, top: 180, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Password :</Text>
 
                 <TextInput
-
                     style={styles.email}
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder="  Enter your email"
-                    onChangeText={str => this.setState({ email: str })}
-
+                    onChangeText={(email) => this.setState({ email })}
 
                 />
                 <TextInput
@@ -121,19 +117,18 @@ class LoginScreen extends React.Component {
                     autoCorrect={false}
                     placeholder="  Enter your password"
                     secureTextEntry={true}
-
                     onChangeText={password => this.setState({ password })}
+
                     style={styles.password}
                 />
                 <View style={styles.signin}>
-                    <Button title='SignIn'
+                    <Button title='Login'
                         buttonStyle={{
                             backgroundColor: "#7DC9DA",
 
                         }}
-                        onPress={() => navigation.navigate('Main')}
-
-                        onPress={this.onLoginButtonPress}
+                        // onPress={() => navigation.navigate('Main')}
+                        onPress={this.Login}
                     />
                 </View>
                 <View style={styles.signup}>
@@ -142,21 +137,19 @@ class LoginScreen extends React.Component {
                             backgroundColor: "#7DC9DA"
                         }}
                         success
-                        onPress={this.onSignUpPress}
-                    // onPress={() => navigation.navigate('Register')}
 
+                        onPress={this.onSignUp}
 
                     />
                 </View>
                 <View style={styles.facebook_signup}>
-                    <Button
-                        title='Login With Facebook'
-                        buttonStyle={{
-                            backgroundColor: "#7DC9DA"
-                        }}
-                        success
-                        onPress={() => this.loginWithFacebook()}
-                    />
+
+                    <Icon.Button
+                        name="facebook"
+                        backgroundColor="#3b5998"
+                        onPress={this.loginWithFacebook}>
+                        Login with Facebook
+                    </Icon.Button>
 
                 </View>
 
@@ -174,14 +167,14 @@ const styles = StyleSheet.create({
         color: '#7BD4E8',
         marginTop: 100,
 
-
     },
+
     email: {
         position: 'absolute',
         width: 170,
         height: 27,
         left: 170,
-        top: 258,
+        top: 295,
         backgroundColor: '#FFFFFF',
         borderRadius: 5,
     },
@@ -190,7 +183,7 @@ const styles = StyleSheet.create({
         width: 170,
         height: 27,
         left: 170,
-        top: 320,
+        top: 362,
         backgroundColor: '#FFFFFF',
         borderRadius: 5,
     },
