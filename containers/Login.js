@@ -10,6 +10,8 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 // import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 import * as Facebook from 'expo-facebook';
 import { max } from "react-native-reanimated";
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 
 
@@ -169,7 +171,7 @@ class LoginScreen extends React.Component {
                     />
                 </View>
 
-                <View style={styles.signup}>
+                {/* <View style={styles.signup}>
                     <Button
                         title='Login With Facebook'
                         buttonStyle={{
@@ -180,6 +182,17 @@ class LoginScreen extends React.Component {
                         success
                         onPress={() => this.loginWithFacebook()}
                     />
+
+                </View> */}
+                <View style={styles.signup}>
+
+                    <Icon.Button
+                    style={{width:250,height:40,fontSize:18}}
+                        name="facebook"
+                        backgroundColor="#3b5998"
+                        onPress={this.loginWithFacebook}>
+                        Login with Facebook
+                    </Icon.Button>
 
                 </View>
 
