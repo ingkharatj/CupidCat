@@ -1,10 +1,8 @@
 import { TabActions } from "@react-navigation/native";
 import React from "react";
 import firebase from 'firebase';
-
 import { Text, StyleSheet, View, TouchableOpacity, TextInput } from "react-native";
 // import styles from '../assets/styles';
-
 // import firebase from 'firebase';
 import { Button, Image } from 'react-native-elements';
 import "firebase/auth";
@@ -17,38 +15,39 @@ import { max } from "react-native-reanimated";
 
 class LoginScreen extends React.Component {
 
-    state = {
-        email: '',
-        password: '',
+    // state = {
+    //     email: '',
+    //     password: '',
+    // }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+            // name: ''
+        }
+
+        this.onSignUp = this.onSignUp.bind(this)
     }
 
-    componentDidMount() {
-        this.authSubscription = firebase.auth().onAuthStateChanged(user => {
-            this.setState({
-                loading: false,
-                user
-            });
-        });
-    }
-    componentWillUnmount() {
-        this.authSubscription();
+    // componentDidMount() {
+    //     this.authSubscription = firebase.auth().onAuthStateChanged(user => {
+    //         this.setState({
+    //             loading: false,
+    //             user
+    //         });
+    //     });
+    // }
+    // componentWillUnmount() {
+    //     this.authSubscription();
+    // }
+
+    onSignUp() {
+        this.props.navigation.navigate('Register')
     }
 
-    onSignUpPress = () => {
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => {
-                alert('Sign up Success')
-            })
-            .catch(msgError => {
-                if(this.state.password.length<6){
-                    alert('Password')
-                }else{alert('User')}
-                
-            })
-    }
-    onLoginButtonPress = () => {
+    Login = () => {
         firebase
             .auth()
             .signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -94,10 +93,7 @@ class LoginScreen extends React.Component {
             alert(`Facebook Login Error: ${message}`);
         }
 
-
     }
-
-
 
     render() {
 
@@ -109,12 +105,12 @@ class LoginScreen extends React.Component {
                 {/* <Image 
                       source={require('../assets/images/catpics/logotest.png')}
                       ></Image> */}
-                      <Image
-                      source={require('../assets/images/catpics/catlogo.png')}
-                      style={{ width: 200, height: 200 }}
-                      />
+                <Image
+                    source={require('../assets/images/catpics/catlogo.png')}
+                    style={{ width: 200, height: 200 }}
+                />
 
-              
+
 
                 {/* <View>
                 <Text style={{ right: 120, top: 100, color: '#7BD4E8', fontSize: 20, fontWeight: '700' }}>Email :</Text>
@@ -123,57 +119,52 @@ class LoginScreen extends React.Component {
 
 
                 <View style={styles.loginbox}>
-                <TextInput
-                    style={styles.loginregister}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    placeholder="  Enter your email"
-                    onChangeText={str => this.setState({ email: str })}
+                    <TextInput
+                        style={styles.loginregister}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        placeholder="  Enter your email"
+                        onChangeText={(email) => this.setState({ email })}
 
-
-                />
-                <TextInput
-                    style={styles.loginregister}
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    placeholder="  Enter your password"
-                    secureTextEntry={true}
-
-                    onChangeText={password => this.setState({ password })}
+                    />
+                    <TextInput
+                        style={styles.loginregister}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        placeholder="  Enter your password"
+                        secureTextEntry={true}
+                        onChangeText={password => this.setState({ password })}
                     // style={styles.password}
-                />
+                    />
                 </View>
 
 
-{/* test */}
+                {/* test */}
                 {/* <TextInput style={styles.input}                     placeholder="  Enter yasdour email"
 /> */}
 
 
                 <View style={styles.signin}>
-                    <Button title='SignIn'
+                    <Button title='Login'
                         buttonStyle={{
-                            backgroundColor: "#7DC9DA",        width: 250,
-                            height: 40, fontSize: 18,        borderRadius: 15,
+                            backgroundColor: "#7DC9DA", width: 250,
+                            height: 40, fontSize: 18, borderRadius: 15,
 
-
-                        }} style={styles.longbutton}
-                        onPress={() => navigation.navigate('Main')}
-
-                        onPress={this.onLoginButtonPress}
+                        }}
+                        // onPress={() => navigation.navigate('Main')}
+                        onPress={this.Login}
                     />
                 </View>
                 <View style={styles.signup}>
                     <Button title='SignUp'
                         buttonStyle={{
-                            backgroundColor: "#7DC9DA",width: 250,
-                            height: 40, fontSize: 18,        borderRadius: 15,
+                            backgroundColor: "#7DC9DA", width: 250,
+                            height: 40, fontSize: 18, borderRadius: 15,
 
                         }}
                         success
-                        onPress={this.onSignUpPress}
-                    // onPress={() => navigation.navigate('Register')}
 
+                        onPress={this.onSignUp}
 
                     />
                 </View>
@@ -182,8 +173,8 @@ class LoginScreen extends React.Component {
                     <Button
                         title='Login With Facebook'
                         buttonStyle={{
-                            backgroundColor: "#7DC9DA",width: 250,
-                            height: 40, fontSize: 18,        borderRadius: 15,
+                            backgroundColor: "#7DC9DA", width: 250,
+                            height: 40, fontSize: 18, borderRadius: 15,
 
                         }}
                         success
@@ -191,7 +182,7 @@ class LoginScreen extends React.Component {
                     />
 
                 </View>
-            
+
 
 
             </View>
@@ -207,14 +198,14 @@ const styles = StyleSheet.create({
         color: '#7BD4E8',
         marginTop: 100,
 
-
     },
+
     email: {
         position: 'absolute',
         width: 170,
         height: 27,
         left: 170,
-        top: 258,
+        top: 295,
         backgroundColor: '#FFFFFF',
         borderRadius: 5,
     },
@@ -223,7 +214,7 @@ const styles = StyleSheet.create({
         width: 170,
         height: 27,
         left: 170,
-        top: 320,
+        top: 362,
         backgroundColor: '#FFFFFF',
         borderRadius: 20,
     },
@@ -234,7 +225,7 @@ const styles = StyleSheet.create({
 
     },
     signin: {
-        marginTop:50,
+        marginTop: 50,
         width: 250,
         height: 35,
         fontSize: 18,
@@ -245,7 +236,7 @@ const styles = StyleSheet.create({
     },
     signup: {
 
-        marginTop:20,
+        marginTop: 20,
         width: 250,
         height: 35,
         alignItems: "center",
@@ -268,9 +259,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10
     },
-    loginregister:{
+    loginregister: {
         borderRadius: 25,
-        borderColor:"#7BD4E8",
+        borderColor: "#7BD4E8",
         width: 250,
         height: 35,
         fontSize: 20,
@@ -281,8 +272,8 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
 
     },
-    loginbox:{
-        marginTop:20
+    loginbox: {
+        marginTop: 20
     }
 
 });
