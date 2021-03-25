@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../assets/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import Loudness from 'react-native-loudness';
 
 import {
     ScrollView,
@@ -16,7 +16,13 @@ import Demo from '../assets/data/demo.js';
 
 const Translate = () => {
 
-
+    Loudness.start();
+    Loudness.getLoudness((loudness) => {
+        console.log(loudness);
+      });
+       
+      Loudness.stop();
+      
     return (
         <View style={styles.containerTranslate}>
             <TouchableOpacity style={styles.bigcircledButton}>
