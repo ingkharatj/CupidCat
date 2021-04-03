@@ -1,71 +1,37 @@
 import { TabActions } from "@react-navigation/native";
 import React, { Component } from "react";
+import Firebase from '../config/Firebase'
 // import firebase from 'firebase';
 import { Text, StyleSheet, View, TouchableOpacity, TextInput } from "react-native";
 // import styles from '../assets/styles';
 // import firebase from 'firebase';
 import { Button } from 'react-native-elements';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import "firebase/auth";
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 // import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 import * as Facebook from 'expo-facebook';
 import { Alert } from "react-native";
-import 'firebase/firestore';
 import firebase from 'firebase/app';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Save from '../components/Save';
 import Add from '../components/Add';
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { updateEmail, updatePassword, signup, updatePetname, updateLocation, updateAge, updateInfor } from '../actions/user'
 
 
 class RegisterScreen extends Component {
-    
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            email: '',
-            password: '',
-            pet_name: '',
-            location: '',
-            age: '',
-        }
 
-        this.onSignUp = this.onSignUp.bind(this)
+
+    handleSignUp = () => {
+        this.props.signup()
+        this.props.navigation.navigate('Main')
     }
-    // test(){
-    //     const dbh = firebase.firestore();
-    //     dbh.collection("users").doc("mario").set({
-    //         employment: "plumber",
-    //         outfitColor: "red",
-    //         specialAttack: "fireball"
-    //       })
-    // }
 
-    onSignUp() {
-        const { email, password, pet_name, location, age } = this.state;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then((result) => {
-                firebase.firestore().collection("users")
-                    .doc(firebase.auth().currentUser.uid)
-                    .set({
-                        pet_name,
-                        email,
-                        location,
-                        age,
-                    })
-                console.log(result)
-                this.props.navigation.navigate('Login')
 
-            })
-            .catch((error) => {
-                Alert.alert("", err.message)
-
-                console.log(error)
-            })
-    }
-    addPhoto() {
+    addPhoto = () => {
         this.props.navigation.navigate('Add')
 
     }
@@ -84,7 +50,8 @@ class RegisterScreen extends Component {
                     <Text style={{ top: 140, color: '#7BD4E8', fontSize: 16, fontWeight: '700' }}>Pet Name :</Text>
                     <Text style={{ top: 160, color: '#7BD4E8', fontSize: 16, fontWeight: '700' }}>Age of your pet :</Text>
                     <Text style={{ top: 180, color: '#7BD4E8', fontSize: 16, fontWeight: '700' }}>Your Location :</Text>
-                    <Text style={{ top: 220, color: '#7BD4E8', fontSize: 16, fontWeight: '700' }}>Add your pet picture :</Text>
+                    <Text style={{ top: 200, color: '#7BD4E8', fontSize: 16, fontWeight: '700' }}>Your Pet Information :</Text>
+                    <Text style={{ top: 340, color: '#7BD4E8', fontSize: 16, fontWeight: '700' }}>Add your pet picture :</Text>
 
                     <View style={styles.select}>
 
@@ -103,33 +70,35 @@ class RegisterScreen extends Component {
                     <TextInput
                         style={styles.email}
                         autoCapitalize="none"
+                        value={this.props.user.email}
                         autoCorrect={false}
                         placeholder="  Enter your email"
-                        onChangeText={(email) => this.setState({ email })}
+                        onChangeText={email => this.props.updateEmail(email)}
 
                     />
                     <TextInput
                         style={styles.input}
                         autoCapitalize="none"
+                        value={this.props.user.password}
                         autoCorrect={false}
                         placeholder="  Enter your password"
                         secureTextEntry={true}
-                        onChangeText={password => this.setState({ password })}
+                        onChangeText={password => this.props.updatePassword(password)}
 
                         style={styles.password}
                     />
                     <TextInput
                         style={styles.petName}
-                        placeholder="name"
-                        onChangeText={(pet_name) => this.setState({ pet_name })}
+                        value={this.props.user.petname}
+                        onChangeText={petname => this.props.updatePetname(petname)}
                         autoCapitalize="none"
                         autoCorrect={false}
                         placeholder="  Enter your pet name"
                     />
                     <TextInput
                         style={styles.age}
-                        placeholder="age"
-                        onChangeText={(age) => this.setState({ age })}
+                        value={this.props.user.age}
+                        onChangeText={age => this.props.updateAge(age)}
                         autoCapitalize="none"
                         autoCorrect={false}
                         placeholder="  Age"
@@ -137,21 +106,33 @@ class RegisterScreen extends Component {
                     <TextInput
                         style={styles.location}
                         placeholder="Your location"
-                        onChangeText={(location) => this.setState({ location })}
+                        value={this.props.user.location}
+                        onChangeText={location => this.props.updateLocation(location)}
                         autoCapitalize="none"
                         autoCorrect={false}
                         placeholder="  Province"
                     />
+                    <TextInput
+                        multiline
+                        style={styles.infor}
+                        placeholder="Your location"
+                        value={this.props.user.infor}
+                        onChangeText={infor => this.props.updateInfor(infor)}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        placeholder="  Type your pet information"
+                    />
 
 
                     <View style={styles.signup}>
-                        <Button title='Enter'
+                        <Button title='Submit'
                             buttonStyle={{
                                 backgroundColor: "#7DC9DA"
                             }}
                             success
-                            onPress={this.onSignUp}
-                            onPress={() => uploadImage()}
+                            onPress={this.handleSignUp}
+
+                        // onPress={() => uploadImage()}
 
                         />
                     </View>
@@ -220,6 +201,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         borderRadius: 5,
     },
+    infor: {
+        position: 'absolute',
+        width: 310,
+        height: 100,
+        left: 15,
+        top: 480,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 5,
+    },
     backgroundStyle: {
         backgroundColor: '#F0FCFF',
         flex: 1,
@@ -228,14 +218,14 @@ const styles = StyleSheet.create({
     },
 
     signup: {
-        top: 250,
+        top: 360,
         left: 240,
         fontWeight: 'bold',
         fontSize: 20,
     },
     select: {
-        top: 190,
-        left: 180,
+        top: 310,
+        left: 190,
         // fontWeight: 'bold',
         // fontSize: 20,
 
@@ -251,7 +241,20 @@ const styles = StyleSheet.create({
 
 });
 
-export default RegisterScreen;
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ updateEmail, updatePassword, updatePetname, updateLocation, signup, updateAge, updateInfor }, dispatch)
+}
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(RegisterScreen)
 
 
 

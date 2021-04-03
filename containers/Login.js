@@ -1,63 +1,49 @@
 import { TabActions } from "@react-navigation/native";
 import React from "react";
-import firebase from 'firebase';
+import Firebase from '../config/Firebase'
 import { Text, StyleSheet, View, TouchableOpacity, TextInput } from "react-native";
 // import styles from '../assets/styles';
 // import firebase from 'firebase';
 import { Button, Image } from 'react-native-elements';
-import "firebase/auth";
+// import "firebase/auth";
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 // import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 import * as Facebook from 'expo-facebook';
 import { max } from "react-native-reanimated";
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { updateEmail, updatePassword, login } from '../actions/user'
+
 
 
 
 class LoginScreen extends React.Component {
 
-    // state = {
-    //     email: '',
-    //     password: '',
-    // }
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            email: '',
-            password: '',
-            // name: ''
-        }
-
-        this.onSignUp = this.onSignUp.bind(this)
+    state = {
+        email: '',
+        password: ''
     }
 
-    // componentDidMount() {
-    //     this.authSubscription = firebase.auth().onAuthStateChanged(user => {
-    //         this.setState({
-    //             loading: false,
-    //             user
-    //         });
-    //     });
-    // }
-    // componentWillUnmount() {
-    //     this.authSubscription();
-    // }
-
-    onSignUp() {
-        this.props.navigation.navigate('Register')
+    handleLogin = () => {
+        this.props.login()
+        this.props.navigation.navigate('Main')
     }
 
-    Login = () => {
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => {
-                this.props.navigation.navigate('Main')
-            })
-            .catch(msgError => {
-                alert('Login error please check your email or password.')
-            })
+    componentDidMount = () => {
+        Firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                // this.props.getUser(user.uid)
+                if (this.props.user != null) {
+                    this.props.navigation.navigate('Main')
+                }
+            }
+        })
     }
+
+
+    
     async loginWithFacebook() {
         try {
             await Facebook.initializeAsync({
@@ -97,7 +83,6 @@ class LoginScreen extends React.Component {
 
     render() {
 
-
         return (
 
             <View style={styles.backgroundStyle}>
@@ -121,19 +106,21 @@ class LoginScreen extends React.Component {
                 <View style={styles.loginbox}>
                     <TextInput
                         style={styles.loginregister}
+                        value={this.props.user.email}
                         autoCapitalize="none"
                         autoCorrect={false}
                         placeholder="  Enter your email"
-                        onChangeText={(email) => this.setState({ email })}
+                        onChangeText={email => this.props.updateEmail(email)}
 
                     />
                     <TextInput
                         style={styles.loginregister}
+                        value={this.props.user.password}
                         autoCapitalize="none"
                         autoCorrect={false}
                         placeholder="  Enter your password"
                         secureTextEntry={true}
-                        onChangeText={password => this.setState({ password })}
+                        onChangeText={password => this.props.updatePassword(password)}
                     // style={styles.password}
                     />
                 </View>
@@ -152,7 +139,7 @@ class LoginScreen extends React.Component {
 
                         }}
                         // onPress={() => navigation.navigate('Main')}
-                        onPress={this.Login}
+                        onPress={this.handleLogin}
                     />
                 </View>
                 <View style={styles.signup}>
@@ -164,22 +151,31 @@ class LoginScreen extends React.Component {
                         }}
                         success
 
-                        onPress={this.onSignUp}
+                        onPress={()=> this.props.navigation.navigate('Register')}
 
                     />
                 </View>
 
-                <View style={styles.signup}>
+                {/* <View style={styles.signup}>
                     <Button
                         title='Login With Facebook'
                         buttonStyle={{
                             backgroundColor: "#7DC9DA", width: 250,
                             height: 40, fontSize: 18, borderRadius: 15,
-
                         }}
                         success
                         onPress={() => this.loginWithFacebook()}
                     />
+                </View> */}
+                <View style={styles.signup}>
+
+                    <Icon.Button
+                        style={{ width: 250, height: 40, fontSize: 18 }}
+                        name="facebook"
+                        backgroundColor="#3b5998"
+                        onPress={this.loginWithFacebook}>
+                        Login with Facebook
+                    </Icon.Button>
 
                 </View>
 
@@ -264,7 +260,7 @@ const styles = StyleSheet.create({
         borderColor: "#7BD4E8",
         width: 250,
         height: 35,
-        fontSize: 20,
+        fontSize: 16,
         alignItems: "center",
         fontWeight: "bold",
         color: '#7BD4E8',
@@ -278,164 +274,20 @@ const styles = StyleSheet.create({
 
 });
 
-export default LoginScreen;
+// export default LoginScreen;
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ updateEmail, updatePassword, login }, dispatch)
+}
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginScreen)
 
 
-
-
-// export default class LoginScreen extends React.Component {
-
-//     constructor(props) {
-//         super(props)
-
-//         this.state = ({
-//             email: '',
-//             password: ''
-//         })
-//     }
-
-//     componentDidMount() {
-
-//         firebase.auth().onAuthStateChanged((user) => {
-//             if (user != null) {
-//                 console.log(user)
-//             }
-//         })
-//     }
-
-//     signUpUser = (email, password) => {
-
-//         try {
-
-//             if (this.state.password.length < 6) {
-//                 alert("Please enter atleast 6 characters")
-//                 return;
-//             }
-
-//             firebase.auth().createUserWithEmailAndPassword(email, password)
-//         }
-//         catch (error) {
-//             console.log(error.toString())
-//         }
-//     }
-
-//     loginUser = (email, password) => {
-
-//         try {
-
-//             firebase.auth().signInWithEmailAndPassword(email, password).then(function (user) {
-//                 console.log(user)
-
-//             })
-//         }
-//         catch (error) {
-//             console.log(error.toString())
-//         }
-//     }
-
-//     async loginWithFacebook() {
-//         try {
-//             await Facebook.initializeAsync({
-//                 appId: '760729524865231',
-//             });
-//             const {
-//                 type,
-//                 token,
-//                 expirationDate,
-//                 permissions,
-//                 declinedPermissions,
-//             } = await Facebook.logInWithReadPermissionsAsync({
-//                 permissions: ['public_profile'],
-//             });
-//             // if (type == 'success') {
-
-//             //     const credential = firebase.auth.FacebookAuthProvider.credential(token)
-
-//             //     firebase.auth().signInWithCredential(credential).catch((error) => {
-//             //         console.log(error)
-//             //     })
-//             // }
-//             if (type === 'success') {
-//                 // Get the user's name using Facebook's Graph API
-//                 const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-//                 Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
-//             }
-
-//             else {
-//                 type === 'cancel'
-//             }
-//         } catch ({ message }) {
-//             alert(`Facebook Login Error: ${message}`);
-//         }
-
-
-//     }
-
-//     render() {
-//         return (
-//             <Container style={styles.container}>
-//                 <Form>
-//                     <Item floatingLabel>
-//                         <Label>Email</Label>
-//                         <Input
-//                             autoCorrect={false}
-//                             autoCapitalize="none"
-//                             onChangeText={(email) => this.setState({ email })}
-//                         />
-
-//                     </Item>
-
-//                     <Item floatingLabel>
-//                         <Label>Password</Label>
-//                         <Input
-//                             secureTextEntry={true}
-//                             autoCorrect={false}
-//                             autoCapitalize="none"
-//                             onChangeText={(password) => this.setState({ password })}
-//                         />
-//                     </Item>
-
-//                     <Button style={{ marginTop: 10 }}
-//                         full
-//                         rounded
-//                         success
-//                         onPress={() => this.loginUser(this.state.email, this.state.password)}
-//                         onPress={() => navigation.navigate('Main')}
-//                     >
-//                         <Text style={{ color: 'white' }}> Login</Text>
-//                     </Button>
-
-//                     <Button style={{ marginTop: 10 }}
-//                         full
-//                         rounded
-//                         primary
-//                         onPress={() => this.signUpUser(this.state.email, this.state.password)}
-//                     >
-//                         <Text style={{ color: 'white' }}> Sign Up</Text>
-//                     </Button>
-
-//                     <Button style={{ marginTop: 10 }}
-//                         full
-//                         rounded
-//                         primary
-//                         onPress={() => this.loginWithFacebook()}
-//                     >
-//                         <Text style={{ color: 'white' }}> Login With Facebook</Text>
-//                     </Button>
-
-
-
-//                 </Form>
-//             </Container>
-//         );
-//     }
-// }
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         backgroundColor: '#fff',
-//         justifyContent: 'center',
-//         padding: 10
-//     },
-// });
