@@ -5,11 +5,11 @@ import * as ImagePicker from 'expo-image-picker';
 import { MaterialIcons } from '@expo/vector-icons';
 // import { Entypo } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import {Ionicons} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 
 
-export default function Add() {
+const Add = () => {
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
     const [camera, setCamera] = useState(null);
@@ -48,6 +48,7 @@ export default function Add() {
             setImage(result.uri);
         }
     };
+
 
 
     if (hasCameraPermission === null || hasGalleryPermission === false) {
@@ -103,14 +104,14 @@ export default function Add() {
                         }}
                     >
                     </MaterialIcons>
-                    
+
                 </View>
 
                 <View>
-                {image && <Image source={{ uri: image }} style={{ flex:0.5 }} />}
+                    {image && <Image source={{ uri: image }} style={{ flex: 0.5 }} />}
                 </View>
                 <Button title="Save" onPress={() => navigation.navigate('Save', { image })} />
-            
+
             </View>
 
         </View>
@@ -138,3 +139,5 @@ const styles = StyleSheet.create({
     },
 
 })
+
+export default Add;

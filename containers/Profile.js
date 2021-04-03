@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../assets/styles';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {
@@ -6,17 +6,31 @@ import {
   View,
   Text,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import ProfileItem from '../components/ProfileItem';
 // import Icon from '../components/Icon';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Demo from '../assets/data/demo.js';
 
+import firebase from 'firebase'
+import { set } from 'react-native-reanimated';
+require("firebase/firestore")
+require("firebase/firebase-storage")
+
+import Save from '../components/Save'
+
+
+
 const Profile = () => {
+  // const {user, logout} = useContext();
+  // const [image, setImage] = useState(undefined);
+  const childPath = `picture/${firebase.auth().currentUser.uid}`;
+
   const {
-    age,
     image,
+    age,
     info1,
     info2,
     info3,
@@ -26,7 +40,23 @@ const Profile = () => {
     name
   } = Demo[7];
 
+
+  // useEffect(() => {
+
+
+  //   firebase
+  //     .storage()
+  //     .ref()
+  //     .child(childPath)
+  //     .getDownloadURL().then((url) => {
+  //       console.log("URL TO SET:",url)
+  //       // setImage(url)
+  //     })
+  // })
+
   return (
+
+
     <ImageBackground
       source={require('../assets/images/bg.png')}
       style={styles.bg}
@@ -41,7 +71,7 @@ const Profile = () => {
             </TouchableOpacity>
 
             <TouchableOpacity>
-                <Icon name="cog" size = "25" style={styles.topIconRight}/>
+              <Icon name="cog" size="25" style={styles.topIconRight} />
             </TouchableOpacity>
           </View>
         </ImageBackground>
