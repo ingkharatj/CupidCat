@@ -7,9 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-
-
-const Add = () => {
+const Add = ({ navigation }) => {
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
     const [camera, setCamera] = useState(null);
@@ -87,6 +85,7 @@ const Add = () => {
                         size="80"
                         color="white"
                         onPress={() => takePicture()}
+                        onPress={() => navigation.navigate('Save', {image} )}
 
                     >
                     </Ionicons>
@@ -108,9 +107,9 @@ const Add = () => {
                 </View>
 
                 <View>
-                    {image && <Image source={{ uri: image }} style={{ flex: 0.5 }} />}
+                    {image && <Image source={{ uri: image }} style={{ flex: 0.001,top:100,alignItems:"center" }} />}
                 </View>
-                <Button title="Save" onPress={() => navigation.navigate('Save', { image })} />
+                {/* <Button title="Save" onPress={() => navigation.navigate('Save', { image })} /> */}
 
             </View>
 
