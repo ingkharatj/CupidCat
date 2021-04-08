@@ -139,7 +139,8 @@ export default StyleSheet.create({
         fontSize: 13
     },
     logout: {
-        backgroundColor: "red",
+        backgroundColor: "#F55482",
+        left:80,
         padding: 10,
         borderRadius: 20,
         width: 90,
@@ -213,7 +214,10 @@ export default StyleSheet.create({
     },
     matchesTextProfileItem: {
         // fontFamily: ICON_FONT,
-        color: WHITE
+        color: WHITE,
+        alignSelf: "center",
+        fontSize: 17,
+        fontWeight: "500"
     },
     name: {
         paddingTop: 25,
@@ -226,7 +230,8 @@ export default StyleSheet.create({
         color: GRAY,
         textAlign: "center",
         paddingBottom: 20,
-        fontSize: 13
+        fontSize: 13,
+        fontWeight: "bold"
     },
     info: {
         paddingVertical: 8,
@@ -265,6 +270,8 @@ export default StyleSheet.create({
         color: DARK_GRAY,
         paddingRight: 10
     },
+    //REGISTER
+    
 
     // CONTAINER - HOME
     containerHome: { marginHorizontal: 10 },
@@ -317,9 +324,10 @@ export default StyleSheet.create({
         flexDirection: "row",
         alignItems: "center"
     },
-    iconButton: { 
+    iconButton: {
         // fontFamily: ICON_FONT
-         fontSize: 20, color: WHITE },
+        fontSize: 20, color: WHITE
+    },
     textButton: {
         // fontFamily: ICON_FONT,
         fontSize: 15,
@@ -353,6 +361,29 @@ export default StyleSheet.create({
         borderRadius: 25,
         backgroundColor: SECONDARY_COLOR,
         paddingHorizontal: 20
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        // alignItems: "center",
+        marginTop: 22,
+        // padding : 150,
+    },
+    modalView: {
+        margin: 15,
+        backgroundColor: "white",
+        borderRadius: 20,
+        height:700,
+        // padding: 100,
+        alignItems: "flex-start",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
     },
 
     // MENU

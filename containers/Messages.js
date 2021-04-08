@@ -23,14 +23,14 @@ const Messages = () => {
         <ScrollView>
           <View style={styles.top}>
             <Text style={styles.title}>Messages</Text>
-            {/* <TouchableOpacity>
+            <TouchableOpacity>
               <Text style={styles.icon}>
                 <Icon name="optionsV" />
               </Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
 
-          {/* <FlatList
+          <FlatList
             data={Demo}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
@@ -42,7 +42,7 @@ const Messages = () => {
                 />
               </TouchableOpacity>
             )}
-          /> */}
+          />
         </ScrollView>
       </View>
     </ImageBackground>

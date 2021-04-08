@@ -23,14 +23,14 @@ const Matches = () => {
         <ScrollView>
           <View style={styles.top}>
             <Text style={styles.title}>Matches</Text>
-            {/* <TouchableOpacity>
+            <TouchableOpacity>
               <Text style={styles.icon}>
                 <Icon name="optionsV" />
               </Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
 
-          {/* <FlatList
+          <FlatList
             numColumns={2}
             data={Demo}
             keyExtractor={(item, index) => index.toString()}
@@ -44,7 +44,7 @@ const Matches = () => {
                 />
               </TouchableOpacity>
             )}
-          /> */}
+          />
         </ScrollView>
       </View>
     </ImageBackground>
