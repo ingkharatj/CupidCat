@@ -8665,6 +8665,11 @@ react-native-size-matters@^0.3.1:
   resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz#24d0cfc335a2c730f6d58bd7b43ea5a41be4b49f"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
 
+react-native-sound-level@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-sound-level/-/react-native-sound-level-1.1.5.tgz#9b7e29ee1e0d16315fb8e9bc7a72015ac66c34a3"
+  integrity sha512-H4dVYbif/PfzMOp9IpNjJUtbODYXeHk8tI0d9mWcJcBEB/ITcP4jSvDtAOH8B/Vcu4h4Owrvsuz/Y+UfS0biuw==
+
 react-native-tab-view@^2.15.2:
   version "2.15.2"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-2.15.2.tgz#4bc7832d33a119306614efee667509672a7ee64e"

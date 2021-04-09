@@ -10,8 +10,7 @@ const Middle = () => {
   return (
 
       <Text style={styles.cityText}>
-       
-        
+      
       </Text>
 
   );
