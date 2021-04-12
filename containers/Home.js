@@ -41,7 +41,7 @@ const Home = (props) => {
 
   const handleSwipeRight = () => {
     const user = db.collection('users')
-      
+
 
     console.log('user:', user)
     // swiper.swipeRight()
@@ -111,7 +111,7 @@ const Home = (props) => {
                     name={item.petname}
                     description={item.infor}
                     // matches={item.breed}
-                    breed ={item.breed}
+                    breed={item.breed}
                     // location = {item.location}
                     actions
                     onPressLeft={() => handleSwipeLeft}
