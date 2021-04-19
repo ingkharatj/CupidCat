@@ -32,7 +32,7 @@ export const UPDATE_MATCH = 'UPDATE_MATCH'
 
 
 
-// actions
+// action
 
 export const updateEmail = email => {
     return {
