@@ -40,10 +40,7 @@ const Profile = (props) => {
   const { navigation } = props
   const {
     age,
-    info1,
-    info2,
-    info3,
-    info4,
+    infor,
     location,
     match,
     name
@@ -67,13 +64,11 @@ const Profile = (props) => {
 
 
       <ScrollView style={styles.containerProfile}>
-        <ImageBackground source={{uri:props.image}} style={styles.photo}>
+        <ImageBackground source={{ uri: props.image }} style={styles.photo}>
 
 
           <View style={styles.top}>
-            <TouchableOpacity
-            >
-
+            <TouchableOpacity>
               <Text style={styles.topIconLeft}>
                 {/* <Icon name="chevronLeft" /> */}
               </Text>
@@ -89,10 +84,8 @@ const Profile = (props) => {
           name={name}
           age={age}
           location={location}
-          info1={info1}
-          info2={info2}
-          info3={info3}
-          info4={info4}
+          infor={infor}
+
         />
 
         <View style={styles.actionsProfile}>

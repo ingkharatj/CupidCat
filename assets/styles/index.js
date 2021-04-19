@@ -140,14 +140,15 @@ export default StyleSheet.create({
     },
     logout: {
         backgroundColor: "#F55482",
-        left:80,
+        left: 80,
         padding: 10,
         borderRadius: 20,
         width: 90,
         shadowOpacity: 0.05,
         shadowRadius: 10,
         shadowColor: BLACK,
-        shadowOffset: { height: 0, width: 0 }
+        shadowOffset: { height: 0, width: 0 },
+
     },
 
     // COMPONENT - FILTERS
@@ -202,17 +203,17 @@ export default StyleSheet.create({
         shadowColor: BLACK,
         shadowOffset: { height: 0, width: 0 }
     },
-    matchesProfileItem: {
+    ProfileItem: {
         width: 131,
         marginTop: -15,
-        backgroundColor: PRIMARY_COLOR,
+        backgroundColor: "#D06DF9",
         paddingVertical: 7,
         paddingHorizontal: 20,
         borderRadius: 20,
         textAlign: "center",
         alignSelf: "center"
     },
-    matchesTextProfileItem: {
+    TextProfileItem: {
         // fontFamily: ICON_FONT,
         color: WHITE,
         alignSelf: "center",
@@ -224,13 +225,14 @@ export default StyleSheet.create({
         paddingBottom: 5,
         color: DARK_GRAY,
         fontSize: 25,
+        fontWeight:"bold",
         textAlign: "center"
     },
     descriptionProfileItem: {
         color: GRAY,
         textAlign: "center",
         paddingBottom: 20,
-        fontSize: 13,
+        fontSize: 16,
         fontWeight: "bold"
     },
     info: {
@@ -271,7 +273,7 @@ export default StyleSheet.create({
         paddingRight: 10
     },
     //REGISTER
-    
+
 
     // CONTAINER - HOME
     containerHome: { marginHorizontal: 10 },
@@ -322,7 +324,8 @@ export default StyleSheet.create({
     actionsProfile: {
         justifyContent: "center",
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        alignSelf:"center"
     },
     iconButton: {
         // fontFamily: ICON_FONT
@@ -331,8 +334,10 @@ export default StyleSheet.create({
     textButton: {
         // fontFamily: ICON_FONT,
         fontSize: 15,
+        fontWeight:"bold",
         color: WHITE,
-        paddingLeft: 5
+        // paddingLeft: 5,
+
     },
     circledButton: {
         width: 50,
@@ -371,15 +376,15 @@ export default StyleSheet.create({
     },
     modalView: {
         margin: 15,
-        backgroundColor: "white",
+        backgroundColor: "#C1D2E8",
         borderRadius: 20,
-        height:700,
+        height: 700,
         // padding: 100,
         alignItems: "flex-start",
         shadowColor: "#000",
         shadowOffset: {
-          width: 0,
-          height: 2
+            width: 0,
+            height: 2
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,

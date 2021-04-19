@@ -148,7 +148,7 @@ export const signup = () => {
                     infor: infor,
                     gender: gender,
                     breed: breed,
-                    // match: match,
+                    match: [],
                     image: image || Image.resolveAssetSource(someCatPicture).uri,
                 }
 

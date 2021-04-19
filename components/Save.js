@@ -87,7 +87,7 @@ function Save(props) {
         <View style={{ flex: 1, backgroundColor: "#D0FCFD" }}>
             <MaterialIcons
 
-                style={{ marginTop: 30, marginLeft: 15 }}
+                style={{ marginTop: 40, marginLeft: 15 }}
                 name="chevron-left"
                 size="45"
                 color="#7BD4E8"
@@ -95,23 +95,19 @@ function Save(props) {
                     props.navigation.navigate("Add")
                 }
 
-
             ></MaterialIcons>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <Image style={{ width: 300, height: 300, marginTop: 100, marginBottom: 40, borderRadius: 20 }}
+                    source={{ uri: props.route.params.image }}
 
-            <Image style={{ width: 300, height: 300, marginTop: 100, left: 38, marginBottom: 40, borderRadius: 20 }}
-                source={{ uri: props.route.params.image }}
-
-            />
-
-            <View style={{ backgroundColor: "#7BD4E8", borderRadius: 20, width: 120, left: 130 }}>
-                {/* <Text style={{
-                    
-                }}>
-                    sfda
-                </Text> */}
-                <Button
-                    title="Save"
-                    onPress={uploadImage} />
+                />
+            </View>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <View style={{ backgroundColor: "#7BD4E8", borderRadius: 20, width: 120}}>
+                    <Button
+                        title="Save"
+                        onPress={uploadImage} />
+                </View>
             </View>
         </View>
     )

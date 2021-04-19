@@ -36,9 +36,9 @@ class ProfileItem extends React.Component {
 
     return (
       <View style={styles.containerProfileItem}>
-        <View style={styles.matchesProfileItem}>
-          <Text style={styles.matchesTextProfileItem}>
-            {this.breed}
+        <View style={styles.ProfileItem}>
+          <Text style={styles.TextProfileItem}>
+            {this.props.user.breed}
             {/* <Icon name="heart" /> {matches}% Match! */}
           </Text>
         </View>
@@ -77,7 +77,7 @@ class ProfileItem extends React.Component {
           <Text style={styles.iconProfile}>
             <Icon name="pets" />
           </Text>
-          <Text style={styles.infoContent}>: {this.props.user.infor}</Text>
+          <Text style={styles.infoContent}>Activity: {this.props.user.infor}</Text>
         </View>
 
         {/* <View style={styles.info}>
