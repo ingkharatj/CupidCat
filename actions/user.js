@@ -135,7 +135,7 @@ export const signup = () => {
 
     return async (dispatch, getState) => {
         try {
-            const { email, password, petname, location, age, infor, gender, breed, image, match } = getState().user
+            const { email, password, petname, location, age, infor, gender, breed, image } = getState().user
             // const { petname, location, age } = getState()
             const response = await Firebase.auth().createUserWithEmailAndPassword(email, password)
             if (response.user.uid) {
@@ -148,7 +148,7 @@ export const signup = () => {
                     infor: infor,
                     gender: gender,
                     breed: breed,
-                    match: match,
+                    match: [],
                     image: image || Image.resolveAssetSource(someCatPicture).uri,
                 }
 

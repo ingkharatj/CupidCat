@@ -77,7 +77,7 @@ class ProfileItem extends React.Component {
           <Text style={styles.iconProfile}>
             <Icon name="pets" />
           </Text>
-          <Text style={styles.infoContent}>: {this.props.user.infor}</Text>
+          <Text style={styles.infoContent}>Activity: {this.props.user.infor}</Text>
         </View>
 
         {/* <View style={styles.info}>

@@ -190,7 +190,7 @@ class Translate extends Component {
             <Pressable
               style={{
                 backgroundColor: "#7AE7A9",
-                padding: 8,
+                padding: 10,
                 borderRadius: 70,
                 marginLeft: 30,
               }}
@@ -199,13 +199,13 @@ class Translate extends Component {
 
               {/* <Text
                 style={{ fontWeight: "bold" }}>Start</Text> */}
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>{!this.state.start ? 'Start' : 'Stop'}</Text>
+              <Text style={{ fontSize: 18, fontWeight: "bold" }}>{!this.state.start ? 'Start' : 'Stop'}</Text>
 
             </Pressable>
             <Pressable
               style={{
                 backgroundColor: "#F55482",
-                padding: 8,
+                padding: 10,
                 borderRadius: 20,
                 marginLeft: 15,
               }}
@@ -214,13 +214,13 @@ class Translate extends Component {
 
               {/* <Text
                 style={{ fontWeight: "bold" }}>Start</Text> */}
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>Reset</Text>
+              <Text style={{ fontSize: 18, fontWeight: "bold" }}>Reset</Text>
 
             </Pressable>
             <Pressable
               style={{
                 backgroundColor: "#7BD4E8",
-                padding: 8,
+                padding: 10,
                 borderRadius: 20,
                 marginLeft: 15,
               }}
@@ -230,7 +230,7 @@ class Translate extends Component {
 
               {/* <Text
                 style={{ fontWeight: "bold" }}>Start</Text> */}
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>Enter</Text>
+              <Text style={{ fontSize: 18, fontWeight: "bold" }}>Enter</Text>
 
             </Pressable>
 

@@ -7,10 +7,11 @@ import Icon from './Icon';
 
 const CardItem = ({
   actions,
-  description,
+  breed,
   image,
+  uid,
   matches,
-  name,
+  petname,
   onPressLeft,
   onPressRight,
   status,
@@ -45,19 +46,19 @@ const CardItem = ({
       {matches && (
         <View style={styles.matchesCardItem}>
           <Text style={styles.matchesTextCardItem}>
-             {matches}
+            {matches}
 
           </Text>
         </View>
       )}
 
-      {/* NAME */}
-      <Text style={nameStyle}>{name}</Text>
+      {/* PETNAME */}
+      <Text style={nameStyle}>{petname}</Text>
 
-      {/* DESCRIPTION */}
-      {description && (
-        <Text style={styles.descriptionCardItem}>{description}</Text>
-      )}
+      {/* BREED*/}
+      {
+        <Text style={styles.descriptionCardItem, { fontWeight: "500" }}>{breed}</Text>
+      }
 
       {/* STATUS */}
       {status && (
@@ -73,7 +74,7 @@ const CardItem = ({
           <TouchableOpacity style={styles.miniButton}>
             <Text style={styles.star}>
               {/* <Icon name="star" /> */}
-            <MaterialCommunityIcons name="star" size="20"/>
+              <MaterialCommunityIcons name="star" size="20" />
 
             </Text>
           </TouchableOpacity>
@@ -81,30 +82,31 @@ const CardItem = ({
           <TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
             <Text style={styles.dislike}>
               {/* <Icon name="dislike" /> */}
-            <MaterialCommunityIcons name="close" size="25"/>
+              <MaterialCommunityIcons name="close" size="25" />
 
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => {onPressRight(); Alert.alert(
-              "Match!",
-              "Now you can chat with with each other!",
-              [
-                {
-                  text: "Cancel",
-                  onPress: () => console.log("Cancel Pressed"),
-                  style: "cancel"
-                },
-                { text: "Chat Now", onPress: () => console.log("OK Pressed") }
-              ],
-              { cancelable: false }
-            );}}
+            // onPress={() => {onPressRight(); Alert.alert(
+            //   "Match!",
+            //   "Now you can chat with with each other!",
+            //   [
+            //     {
+            //       text: "Cancel",
+            //       onPress: () => console.log("Cancel Pressed"),
+            //       style: "cancel"
+            //     },
+            //     { text: "Chat Now", onPress: () => console.log("OK Pressed") }
+            //   ],
+            //   { cancelable: false }
+            // );}}
+            onPress={() => onPressRight()}
           >
             <Text style={styles.like}>
               {/* <Icon name="like" /> */}
-            <MaterialCommunityIcons name="heart" size="25" color="#EC8843"/>
+              <MaterialCommunityIcons name="heart" size="25" color="#EC8843" />
 
             </Text>
           </TouchableOpacity>
@@ -112,7 +114,7 @@ const CardItem = ({
           <TouchableOpacity style={styles.miniButton}>
             <Text style={styles.flash}>
               {/* <Icon name="flash" /> */}
-            <MaterialCommunityIcons name="flash" size="20" />
+              <MaterialCommunityIcons name="flash" size="20" />
 
             </Text>
           </TouchableOpacity>
