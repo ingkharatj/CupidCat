@@ -8,14 +8,15 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
-  FlatList
+  FlatList,
+  Button
 } from 'react-native';
 import CardItem from '../components/CardItem';
 import Icon from '../components/Icon';
 import Firebase, { db } from '../config/Firebase';
 import Demo from '../assets/data/demo.js';
 
-import firebase, { firestore } from "firebase/app";
+import firebase, { firestore, messaging } from "firebase/app";
 import 'firebase/firestore'
 
 import _ from "lodash";
@@ -30,7 +31,7 @@ const matches = () => {
   const [likeUser, setLikeUser] = useState([]);
   const [userLike, setUserLike] = useState([]);
   const [arr, setArr] = useState([]);
-
+  const [chatuser,setchatuser] = useState([]);
 
   // let arr = []
 
@@ -131,6 +132,9 @@ const matches = () => {
       }
 
     };
+
+
+
     a();
     findmatch();
     initialFetchUsers();
@@ -138,6 +142,16 @@ const matches = () => {
     // getUid();
 
   }, []);
+
+  const onClick = () => {
+    console.log(chatuser)
+    // navigation.navigate('ChatRoom', {
+    //   id: chatRoom.id,
+    //   name: otherUser.name,
+    // })
+  }
+
+
   const matchUser = users.filter((user) => arr[0].includes(user.uid))
 
 
@@ -195,8 +209,11 @@ const matches = () => {
             data={matchUser}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-              <TouchableOpacity>
+              <TouchableOpacity               
+                onPress={onClick}
+              >
                 <CardItem
+                  
                   image={{ uri: item.image }}
                   petname={item.petname}
                   breed={item.breed}
