@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from '../assets/styles';
+import { useEffect, useState } from 'react';
+import { useRoute } from "@react-navigation/native";
 
 import {
   ScrollView,
@@ -7,13 +9,19 @@ import {
   TouchableOpacity,
   ImageBackground,
   View,
-  FlatList
+  FlatList,
+  Button
 } from 'react-native';
 import Message from '../components/Message';
 import Icon from '../components/Icon';
 import Demo from '../assets/data/demo.js';
 
 const Messages = () => {
+  const route = useRoute();
+  const [chatuser,setchatuser] = useState([]);
+  console.log("aaaaaa",route.params);
+  // const { itemId, otherParam } = route.params;
+
   return (
     <ImageBackground
       source={require('../assets/images/bg.png')}
@@ -30,7 +38,7 @@ const Messages = () => {
             </TouchableOpacity>
           </View>
 
-          <FlatList
+          {/* <FlatList
             data={Demo}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
@@ -42,7 +50,15 @@ const Messages = () => {
                 />
               </TouchableOpacity>
             )}
-          />
+          /> */}
+              <TouchableOpacity>
+
+<Button
+                onPress={()=>console.log('now on chat page : ', chatuser[0])}
+                title="lksdfg"
+                ></Button>
+                              </TouchableOpacity>
+
         </ScrollView>
       </View>
     </ImageBackground>

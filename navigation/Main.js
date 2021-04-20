@@ -62,6 +62,7 @@ const Stack = createStackNavigator();
   
             }}
           />
+
         </Stack.Navigator>
       </NavigationContainer>
 

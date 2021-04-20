@@ -22,8 +22,11 @@ import 'firebase/firestore'
 import _ from "lodash";
 import { set } from 'react-native-reanimated';
 
-const matches = () => {
+import { NavigationContainer } from "@react-navigation/native";
 
+
+const matches = (props) => {
+  const {navigation} = props
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState();
   const [matches, setMatches] = useState([]);
@@ -144,11 +147,11 @@ const matches = () => {
   }, []);
 
   const onClick = () => {
-    console.log(chatuser)
-    // navigation.navigate('ChatRoom', {
-    //   id: chatRoom.id,
-    //   name: otherUser.name,
-    // })
+    // console.log(chatuser[0])
+
+    navigation.navigate('Message', {
+      name: chatuser[0],
+    })
   }
 
 
@@ -210,7 +213,10 @@ const matches = () => {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
               <TouchableOpacity               
-                onPress={onClick}
+                // onPress={onClick}
+                onPress={
+                  () => { chatuser.push(item.petname); onClick(); }
+                 }
               >
                 <CardItem
                   
