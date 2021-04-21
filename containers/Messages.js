@@ -55,7 +55,7 @@ const Messages = () => {
 
 <Button
                 onPress={()=>console.log('now on chat page : ', chatuser[0])}
-                title="lksdfg"
+                title={route.params.name}
                 ></Button>
                               </TouchableOpacity>
 

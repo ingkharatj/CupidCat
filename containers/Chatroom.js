@@ -16,17 +16,14 @@ import Icon from '../components/Icon';
 import Firebase, { db } from '../config/Firebase';
 import Demo from '../assets/data/demo.js';
 
-import firebase, { firestore, messaging } from "firebase/app";
+import firebase, { firestore } from "firebase/app";
 import 'firebase/firestore'
 
 import _ from "lodash";
 import { set } from 'react-native-reanimated';
 
-import { NavigationContainer } from "@react-navigation/native";
+const chatroom = () => {
 
-
-const matches = (props) => {
-  const {navigation} = props
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState();
   const [matches, setMatches] = useState([]);
@@ -135,9 +132,6 @@ const matches = (props) => {
       }
 
     };
-
-
-
     a();
     findmatch();
     initialFetchUsers();
@@ -145,14 +139,6 @@ const matches = (props) => {
     // getUid();
 
   }, []);
-
-  const onClick = () => {
-    navigation.navigate('Message', {
-      name: chatuser[0],
-    })
-  }
-
-
   const matchUser = users.filter((user) => arr[0].includes(user.uid))
 
 
@@ -193,48 +179,13 @@ const matches = (props) => {
     >
       <View style={styles.containermatches}>
         <ScrollView>
-          <View style={styles.top}>
-            <Text style={styles.title}>matches</Text>
-            <TouchableOpacity
-            // onPress={() => console.log("Match: ", arr)}
-            >
-              <Text style={styles.icon}>
-                <Icon name="optionsV" />
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          <FlatList
-          
-            numColumns={2}
-            data={matchUser}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
-              <TouchableOpacity               
-                // onPress={onClick}
-                onPress={
-                  () => {navigation.navigate('Message', {
-                    name: item.petname,
-                    id: item.uid,
-                  }); }
-                 }
-              >
-                <CardItem
-                  
-                  image={{ uri: item.image }}
-                  petname={item.petname}
-                  breed={item.breed}
-                  // status={item.status}
-                  variant
-                />
-              </TouchableOpacity>
-            )}
-          />
-          {/* {matchUser} */}
+            <Button
+                onPress={()=>console.log('now on chat page : ', name)}
+                ></Button>
         </ScrollView>
       </View>
     </ImageBackground>
   );
 };
 
-export default matches;
+export default chatroom;
