@@ -38,16 +38,31 @@ const Profile = (props) => {
   // const [image, setImage] = useState(undefined);
   // const childPath = `picture/${firebase.auth().currentUser.uid}`;
   const { navigation } = props
-  const {
-    age,
-    infor,
-    location,
-    match,
-    name
-  } = Demo[7];
+  // const {
+  //   age,
+  //   infor,
+  //   location,
+  //   match,
+  //   name
+  // } = Demo[7];
+
+  const [age, setAge] = useState('');
+  const [infor, setInfor] = useState('');
+  const [location, setLocation] = useState('');
+  const [match, setMatch] = useState('');
+  const [petname, setPetname] = useState('');
+  // const [image, setImage] = useState(props.image);
+
+
+
+
 
   const addPhoto = () => {
     navigation.navigate('Add')
+  }
+
+  const addCer = () => {
+    navigation.navigate('AddCertified')
   }
 
   useEffect(() => {
@@ -81,16 +96,17 @@ const Profile = (props) => {
 
         <ProfileItem
           matches={match}
-          name={name}
+          name={petname}
           age={age}
           location={location}
           infor={infor}
 
         />
 
-        <View style={styles.actionsProfile}>
-          <TouchableOpacity style={styles.roundedButton}>
-            <Text style={styles.textButton}> Certified Pedigree
+        <View style={styles.actionsProfile, { flexDirection: "row", justifyContent: "center" }}>
+          <TouchableOpacity style={styles.roundedButton}
+            onPress={addCer}>
+            <Text style={styles.textButton}> Add Certified Pedigree
               {/* <Icon name="optionsH" /> */}
             </Text>
           </TouchableOpacity>

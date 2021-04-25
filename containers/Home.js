@@ -82,19 +82,11 @@ const Home = (props) => {
     props.navigation.navigate('Login');
   };
 
-  // "age": "dsf",
-  // "breed": "dsf",
-  // "email": "test2@gmail.com",
-  // "gender": "dsfa",
-  // "image": "https://firebasestorage.googleapis.com/v0/b/cupidcat-2b0e7.appspot.com/o/picture%2F0LpCSSckdpfRfQhicFetKrMV9Hk2%2F0.5xn5kyhwsho?alt=media&token=fe8f603f-ec5f-4aaf-99f3-2b091acb722e",
-  // "infor": "dfsa",
-  // "location": "dsaf",
-  // "petname": "sdaf",
-  // "uid": "0LpCSSckdpfRfQhicFetKrMV9Hk2",
 
-  const userCards = users.map((item, index) => {
+  const userCards = users.map((item) => {
     return (
-      <Card key={item.uid}>
+      <Card key={item.uid}
+      >
         <CardItem
           image={{ uri: item.image }}
           petname={item.petname}
@@ -139,11 +131,13 @@ const Home = (props) => {
         </View>
         {users.length ? (
           <CardStack
+          style={{flex:1}}
             loop={true}
-            verticalSwipe={false}
+            verticalSwipe={true}
             horizontalSwipe={true}
-            // ref={(swiper) => setSwiper(swiper)}
             ref={swiper => (this.swiper = swiper)}
+            disableRightSwipe={true}
+            
           // onSwipedLeft={handleSwipeLeft}
           // onSwipedRight={handleSwipeRight}
           >
@@ -151,9 +145,7 @@ const Home = (props) => {
           </CardStack>
 
         ) : null}
-        {/* <TouchableOpacity onPress={() =>  swiper.swipeLeft() }>
-          <Text>Left</Text>
-        </TouchableOpacity> */}
+        
       </View>
     </ImageBackground>
   );

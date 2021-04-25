@@ -43,7 +43,7 @@ class LoginScreen extends React.Component {
     }
 
 
-    
+
     async loginWithFacebook() {
         try {
             await Facebook.initializeAsync({
@@ -151,7 +151,7 @@ class LoginScreen extends React.Component {
                         }}
                         success
 
-                        onPress={()=> this.props.navigation.navigate('Register')}
+                        onPress={() => this.props.navigation.navigate('Register')}
 
                     />
                 </View>
@@ -174,7 +174,8 @@ class LoginScreen extends React.Component {
                         name="facebook"
                         backgroundColor="#3b5998"
                         onPress={this.loginWithFacebook}>
-                        Login with Facebook
+                            |       Login with Facebook        
+
                     </Icon.Button>
 
                 </View>

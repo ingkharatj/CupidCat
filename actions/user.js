@@ -1,6 +1,6 @@
 import Firebase, { db } from '../config/Firebase.js'
 import { Image } from 'react-native'
-import someCatPicture from '../assets/images/01.jpg'
+import someCatPicture from '../assets/images/default.png'
 // import "firebase/auth";
 
 // define types
@@ -23,6 +23,8 @@ export const BREED = 'BREED'
 export const UPDATE_BREED = 'UPDATE_BREED'
 export const IMAGE = 'IMAGE'
 export const UPDATE_IMAGE = 'UPDATE_IMAGE'
+export const CERTIFIED = 'CERTIFIED'
+export const UPDATE_CERTIFIED = 'UPDATE_CERTIFIED'
 export const MATCH = 'MATCH'
 export const UPDATE_MATCH = 'UPDATE_MATCH'
 
@@ -97,6 +99,13 @@ export const updateImage = image => {
     }
 }
 
+export const updateImageCer = certified => {
+    return {
+        type: UPDATE_CERTIFIED,
+        payload: certified
+    }
+}
+
 export const updateMatch = match => {
     return {
         type: UPDATE_MATCH,
@@ -109,7 +118,7 @@ export const login = () => {
         try {
             const { email, password } = getState().user
             const response = await Firebase.auth().signInWithEmailAndPassword(email, password)
-            
+
             dispatch(getUser(response.user.uid))
         } catch (e) {
             alert(e)
@@ -150,13 +159,14 @@ export const signup = () => {
                     gender: gender,
                     breed: breed,
                     match: [],
+                    certified: '',
                     image: image || Image.resolveAssetSource(someCatPicture).uri,
                 }
 
                 db.collection('users')
                     .doc(response.user.uid)
                     .set(user)
- 
+
                 dispatch({ type: SIGNUP, payload: user })
             }
         } catch (e) {
@@ -165,10 +175,10 @@ export const signup = () => {
     }
 }
 
-export const updateUser =()=>{
+export const updateUser = () => {
     db.collection('users')
-                    .doc(user.uid)
-                    .set(user)
+        .doc(user.uid)
+        .set(user)
 }
 
 const uploadImage = async () => {

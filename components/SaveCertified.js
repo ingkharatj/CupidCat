@@ -12,12 +12,12 @@ require("firebase/firebase-storage")
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { updateEmail, updatePassword, signup, updatePetname, updateLocation, updateAge, updateInfor, updateGender, updateBreed, updateImage } from '../actions/user'
+import { updateEmail, updatePassword, signup, updatePetname, updateLocation, updateAge, updateInfor, updateGender, updateBreed, updateImage,updateImageCer } from '../actions/user'
 
 
 
 
-function Save(props) {
+function SaveCertified(props) {
 
 
     const uploadImage = async () => {
@@ -65,8 +65,8 @@ function Save(props) {
             await firebase.firestore()
                 .collection('users')
                 .doc(firebase.auth().currentUser.uid)
-                .update({ image: downloadURL })
-            props.updateImage(downloadURL)
+                .update({ certified: downloadURL })
+            props.updateImageCer(downloadURL)
             props.navigation.navigate('Profile')
         } catch (error) {
             console.log(error)
@@ -114,7 +114,7 @@ function Save(props) {
 // export default Save
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ updateEmail, updatePassword, updatePetname, updateLocation, signup, updateAge, updateInfor, updateGender, updateBreed, updateImage }, dispatch)
+    return bindActionCreators({ updateEmail, updatePassword, updatePetname, updateLocation, signup, updateAge, updateInfor, updateGender, updateBreed, updateImage,updateImageCer }, dispatch)
 }
 
 const mapStateToProps = state => {
@@ -126,4 +126,4 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Save)
+)(SaveCertified)
