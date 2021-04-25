@@ -39,6 +39,7 @@ class Translate extends Component {
 
   showFeeling = () => {
     // this.setState({ feel: "hello" })
+    this.setState({feel : "Feel well"})
 
     console.log(this.state.cal)
 
@@ -81,8 +82,6 @@ class Translate extends Component {
 
       this.setState({ feel: "I love youuu" })
 
-    }else{
-      this.setState({ feel: "Feel well" })
     }
 
 
