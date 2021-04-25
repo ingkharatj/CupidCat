@@ -13,7 +13,6 @@ import {
 import CardItem from '../components/CardItem';
 import Icon from '../components/Icon';
 import Firebase, { db } from '../config/Firebase';
-import Demo from '../assets/data/demo.js';
 
 import firebase, { firestore } from "firebase/app";
 import 'firebase/firestore'

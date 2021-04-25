@@ -15,7 +15,6 @@ import ProfileItem from '../components/ProfileItem';
 import Add from '../components/Add';
 // import Icon from '../components/Icon';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Demo from '../assets/data/demo.js';
 import { set } from 'react-native-reanimated';
 
 import EditProfile from '../containers/EditProfile'

@@ -9,7 +9,6 @@ import Middle from '../components/Middle';
 import Filters from '../components/Filters';
 import CardItem from '../components/CardItem';
 import styles from '../assets/styles';
-import Demo from '../assets/data/demo.js';
 import Firebase, { db } from '../config/Firebase';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions/userList';
