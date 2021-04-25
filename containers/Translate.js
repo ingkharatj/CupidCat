@@ -82,6 +82,8 @@ class Translate extends Component {
 
       this.setState({ feel: "I love youuu" })
 
+    }else{
+      this.setState({ feel: "Feel well" })
     }
 
 
@@ -237,7 +239,7 @@ class Translate extends Component {
           </View>
 
           <View style={{ marginLeft: 30, marginTop: 30, flexDirection: "row" }}>
-            <View style={{ backgroundColor: "#76E7F0", borderRadius: 10, padding: 10 }}>
+            <View style={{ backgroundColor: "#7BD4E8", borderRadius: 10, padding: 10 }}>
 
               <Text style={{ fontSize: 20, marginRight: 10, fontWeight: "bold" }}>Feel:</Text>
               <Text

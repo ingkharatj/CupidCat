@@ -17,6 +17,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 const MainNavigator = () => {
+  
 
 const Tab = createBottomTabNavigator();
 
@@ -61,24 +62,7 @@ const Tab = createBottomTabNavigator();
             },
           }}
         />
-        <Tab.Screen
-          name="Message"
-          component={MessagesScreen}
-          options={{
-            tabBarLabel: 'Message',
-            tabBarBadge: 3,
-            tabBarIcon: ({ color, size }) => {
-              // const iconFocused = focused ? "#7444C0" : "#363636";
-              return (
-                <Text style={[styles.iconMenu,]}>
-                  {/* <Icon name="chat" /> */}
-                  <MaterialCommunityIcons name="chat" color={color} size={size} />
-  
-                </Text>
-              );
-            },
-          }}
-        />
+       
         <Tab.Screen
           name="Translate"
           component={TranslateScreen}

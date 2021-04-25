@@ -78,11 +78,25 @@ export default StyleSheet.create({
     },
     button: {
 
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        backgroundColor: WHITE,
-        marginHorizontal: 7,
+        width: 80,
+        height: 80,
+        borderRadius: 50,
+        backgroundColor: "#EB1F60",
+        marginHorizontal: 30,
+        alignItems: "center",
+        justifyContent: "center",
+        shadowOpacity: 0.15,
+        shadowRadius: 20,
+        shadowColor: DARK_GRAY,
+        shadowOffset: { height: 10, width: 0 }
+    },
+    button2: {
+
+        width: 80,
+        height: 80,
+        borderRadius: 50,
+        backgroundColor: GRAY,
+        marginHorizontal: 30,
         alignItems: "center",
         justifyContent: "center",
         shadowOpacity: 0.15,
@@ -136,7 +150,8 @@ export default StyleSheet.create({
     cityText: {
         // fontFamily: ICON_FONT,
         color: DARK_GRAY,
-        fontSize: 13
+        fontSize: 13,
+        fontWeight:"bold"
     },
     logout: {
         backgroundColor: "#F55482",
@@ -282,7 +297,7 @@ export default StyleSheet.create({
     containerMatches: {
         justifyContent: "space-between",
         flex: 1,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
     },
 
     // CONTAINER - MESSAGES
@@ -317,8 +332,8 @@ export default StyleSheet.create({
     },
     topIconRight: {
         // fontFamily: ICON_FONT,
-        fontSize: 20,
-        color: WHITE,
+        fontSize: 30,
+        color: '#F55482',
         paddingRight: 20
     },
     actionsProfile: {
@@ -361,7 +376,8 @@ export default StyleSheet.create({
         justifyContent: "center",
         flexDirection: "row",
         alignItems: "center",
-        marginLeft: 10,
+        margin: 5,
+        marginTop:0,
         height: 50,
         borderRadius: 25,
         backgroundColor: SECONDARY_COLOR,
@@ -406,5 +422,6 @@ export default StyleSheet.create({
         // fontFamily: ICON_FONT,
         height: 20,
         paddingBottom: 25
-    }
+    },
+
 });

@@ -71,18 +71,12 @@ const CardItem = ({
       {/* ACTIONS */}
       {actions && (
         <View style={styles.actionsCardItem}>
-          <TouchableOpacity style={styles.miniButton}>
-            <Text style={styles.star}>
-              {/* <Icon name="star" /> */}
-              <MaterialCommunityIcons name="star" size="20" />
 
-            </Text>
-          </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
+          <TouchableOpacity style={styles.button2} onPress={() => onPressLeft()}>
             <Text style={styles.dislike}>
               {/* <Icon name="dislike" /> */}
-              <MaterialCommunityIcons name="close" size="25" />
+              <MaterialCommunityIcons name="close" size="40" />
 
             </Text>
           </TouchableOpacity>
@@ -106,18 +100,12 @@ const CardItem = ({
           >
             <Text style={styles.like}>
               {/* <Icon name="like" /> */}
-              <MaterialCommunityIcons name="heart" size="25" color="#EC8843" />
+              <MaterialCommunityIcons name="heart" size="40" color="#F6DFE6" />
 
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.miniButton}>
-            <Text style={styles.flash}>
-              {/* <Icon name="flash" /> */}
-              <MaterialCommunityIcons name="flash" size="20" />
 
-            </Text>
-          </TouchableOpacity>
         </View>
       )}
     </View>

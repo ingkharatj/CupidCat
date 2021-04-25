@@ -7,7 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
-const Add = ({ navigation }) => {
+const AddCertified = ({ navigation }) => {
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
     const [camera, setCamera] = useState(null);
@@ -131,7 +131,7 @@ const Add = ({ navigation }) => {
                 <View style={{ backgroundColor: "white", borderRadius: 20, width: 120, alignSelf: "center" }}>
                     <Button
                         title="Next"
-                        onPress={() => navigation.navigate('Save', { image })} />
+                        onPress={() => navigation.navigate('SaveCertified', { image })} />
                 </View>
 
             </View>
@@ -162,4 +162,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Add;
+export default AddCertified;

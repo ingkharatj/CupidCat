@@ -21,15 +21,22 @@ import 'firebase/firestore'
 import _ from "lodash";
 import { set } from 'react-native-reanimated';
 
-const matches = () => {
+const matches = (props) => {
+  const { navigation } = props
+
 
   const [users, setUsers] = useState([]);
+  const [auth, setAuth] = useState('');
   const [user, setUser] = useState();
   const [matches, setMatches] = useState([]);
 
   const [likeUser, setLikeUser] = useState([]);
   const [userLike, setUserLike] = useState([]);
   const [arr, setArr] = useState([]);
+
+  const [chatuid, setchatUid] = useState([]);
+  // const [n, setn] = useState(0)
+  // const [allchatuid, setallchatuid] = useState([]);
 
 
   // let arr = []
@@ -40,6 +47,7 @@ const matches = () => {
   useEffect(() => {
 
     const userAuth = Firebase.auth().currentUser.uid
+    setAuth(userAuth)
     console.log(userAuth)
 
     async function a() {
@@ -88,7 +96,7 @@ const matches = () => {
 
       console.log("Match: ", arr)
 
-      
+
 
 
 
@@ -138,38 +146,18 @@ const matches = () => {
     // getUid();
 
   }, []);
-  const matchUser = users.filter((user) => arr[0].includes(user.uid))
+  const matchUser = users.filter((user) => arr[0].includes(user.uid) && user.uid != auth)
 
 
-  // const matchUser = matches.map((uid) => {
-    
+  const startChat = async (item) => {
+    navigation.navigate('Message', {
+      petname: item.petname,
+      uid: item.uid,
+      auth_uid: auth,
+      image: item.image
+    })
 
-  //   const x = arr.pop()
-  //   users.filter((user) => user.uid === uid);
-  //   return (
-  //     <FlatList
-  //       numColumns={2}
-  //       data={users}
-  //       // keyExtractor={item => user.id}
-  //       renderItem={({ item }) => (
-  //         <TouchableOpacity>
-  //           <CardItem
-  //             image={{ uri: item.image }}
-  //             petname={item.petname}
-  //             breed={item.breed}
-  //             // status={item.status}
-  //             variant
-  //           />
-  //         </TouchableOpacity>
-  //       )}
-  //     />
-
-
-  //   );
-  // })
-  
-
-
+  }
 
   return (
     <ImageBackground
@@ -177,25 +165,22 @@ const matches = () => {
       style={styles.bg}
     >
       <View style={styles.containermatches}>
+        <View style={styles.top}>
+          <Text style={styles.title}>Matches</Text>
+
+        </View>
         <ScrollView>
-          <View style={styles.top}>
-            <Text style={styles.title}>matches</Text>
-            <TouchableOpacity
-            // onPress={() => console.log("Match: ", arr)}
-            >
-              <Text style={styles.icon}>
-                <Icon name="optionsV" />
-              </Text>
-            </TouchableOpacity>
-          </View>
+
 
           <FlatList
-          
+            style={{ alignSelf: "center" }}
             numColumns={2}
             data={matchUser}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => startChat(item)}
+              >
                 <CardItem
                   image={{ uri: item.image }}
                   petname={item.petname}
