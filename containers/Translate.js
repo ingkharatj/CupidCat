@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 import ProfileItem from '../components/ProfileItem';
 import Icon from '../components/Icon';
-import Demo from '../assets/data/demo.js';
 import { WebView } from 'react-native-webview';
 import { Component } from 'react';
 
@@ -40,6 +39,7 @@ class Translate extends Component {
 
   showFeeling = () => {
     // this.setState({ feel: "hello" })
+    this.setState({feel : "Feel well"})
 
     console.log(this.state.cal)
 

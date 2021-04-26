@@ -16,6 +16,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { updateEmail, updatePassword, login } from '../actions/user'
 
+import { LogBox } from 'react-native';
+
+LogBox.ignoreAllLogs();
 
 
 
@@ -28,7 +31,6 @@ class LoginScreen extends React.Component {
 
     handleLogin = () => {
         this.props.login()
-        this.props.navigation.navigate('Main')
     }
 
     componentDidMount = () => {
@@ -174,7 +176,7 @@ class LoginScreen extends React.Component {
                         name="facebook"
                         backgroundColor="#3b5998"
                         onPress={this.loginWithFacebook}>
-                            |       Login with Facebook        
+                        |       Login with Facebook
 
                     </Icon.Button>
 

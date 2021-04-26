@@ -9,19 +9,20 @@ import {
   TouchableOpacity,
   Image,
   Modal,
-  Pressable
+  Pressable,
+  RefreshControl
 } from 'react-native';
 import ProfileItem from '../components/ProfileItem';
 import Add from '../components/Add';
 // import Icon from '../components/Icon';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Demo from '../assets/data/demo.js';
 import { set } from 'react-native-reanimated';
 
 import EditProfile from '../containers/EditProfile'
 
 import Save from '../components/Save'
-import Firebase from '../config/Firebase'
+import Firebase, { db } from '../config/Firebase'
+
 
 import * as ImagePicker from 'expo-image-picker'
 
@@ -31,6 +32,11 @@ import { connect } from 'react-redux'
 import { updateEmail, updatePassword, signup, updatePetname, updateLocation, updateAge, updateInfor, updateGender, updateBreed, updateImage } from '../actions/user'
 import { Button } from 'native-base';
 
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 const Profile = (props) => {
   // const [modalVisible, setModalVisible] = useState(false);
 
@@ -38,20 +44,22 @@ const Profile = (props) => {
   // const [image, setImage] = useState(undefined);
   // const childPath = `picture/${firebase.auth().currentUser.uid}`;
   const { navigation } = props
-  // const {
-  //   age,
-  //   infor,
-  //   location,
-  //   match,
-  //   name
-  // } = Demo[7];
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
+
 
   const [age, setAge] = useState('');
   const [infor, setInfor] = useState('');
   const [location, setLocation] = useState('');
   const [match, setMatch] = useState('');
   const [petname, setPetname] = useState('');
-  // const [image, setImage] = useState(props.image);
+  const [image, setImage] = useState('');
 
 
 
@@ -66,7 +74,18 @@ const Profile = (props) => {
   }
 
   useEffect(() => {
-    console.log("Props", props.image)
+    const userAuth = Firebase.auth().currentUser.uid
+
+    db.collection("users")
+      .doc(userAuth)
+      .get()
+      .then(doc => {
+        console.log(doc.data())
+        setImage(doc.data().image)
+      })
+    // console.log("Props", props.image)
+
+    // setImage(props.image)
   })
 
   return (
@@ -78,8 +97,15 @@ const Profile = (props) => {
     >
 
 
-      <ScrollView style={styles.containerProfile}>
-        <ImageBackground source={{ uri: props.image }} style={styles.photo}>
+      <ScrollView style={styles.containerProfile}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }>
+
+        <ImageBackground source={{ uri: image }} style={styles.photo}>
 
 
           <View style={styles.top}>

@@ -7,6 +7,7 @@ import Firebase, { db } from '../config/Firebase';
 import { Avatar, GiftedChat, InputToolbar, Bubble } from 'react-native-gifted-chat'
 import AsyncStorage from '@react-native-community/async-storage'
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import { Video, Audio } from 'expo-av';
 
 
 // import matchUser from '../containers/Matches'
@@ -151,8 +152,20 @@ const Messages = (props) => {
 
           <TouchableOpacity>
 
-            <MaterialCommunityIcons name="cat" size="28" style={{ alignSelf: "flex-end" }} />
-            <Text style={styles.icon} style={{ fontSize: 10 }}>
+            <MaterialCommunityIcons name="cat" size="28" style={{ alignSelf: "flex-end" }}
+              onPress={() => navigation.navigate('ShowProfile', {
+                petname: route.params.petname,
+                location: route.params.location,
+                gender: route.params.gender,
+                infor: route.params.infor,
+                breed: route.params.breed,
+                age: route.params.age,
+                image: route.params.image
+                // auth_uid: auth,
+                // image: item.image
+              })}
+            />
+            <Text style={styles.icon} style={{ fontSize: 10, fontWeight: "bold" }}>
               See {route.params.petname} infor
               </Text>
 
@@ -160,6 +173,15 @@ const Messages = (props) => {
 
 
         </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10, backgroundColor: "#FCACAC", flexDirection: "row" }}>
+          <Ionicons
+            name="warning"
+            style={{ marginRight: 5 }}
+          />
+          <Text style={{ fontSize: 10 }}>Please be careful!</Text>
+        </View>
+
+
       </View>
 
 

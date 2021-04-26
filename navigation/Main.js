@@ -15,6 +15,7 @@ import SaveCertified from '../components/SaveCertified';
 import MessagesScreen from "../containers/Messages";
 
 import React, { Component } from 'react';
+import ShowProfileScreen from '../containers/ShowProfile';
 
 
 const Main = () => {
@@ -53,6 +54,13 @@ const Main = () => {
         <Stack.Screen
           name="Message"
           component={MessagesScreen}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="ShowProfile"
+          component={ShowProfileScreen}
           options={{
             headerShown: false
           }}
