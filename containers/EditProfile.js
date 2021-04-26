@@ -10,11 +10,14 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { updateEmail, updatePassword, signup, updatePetname, updateLocation, updateAge, updateInfor, updateGender, updateBreed, updateUser } from '../actions/user'
 
+
 const EditProfile = (props) => {
-    
+
     const userAuth = Firebase.auth().currentUser.uid
 
     const [modalVisible, setModalVisible] = useState(false);
+    const [refreshing, setRefreshing] = React.useState(false);
+
 
     const [age, setAge] = useState('');
     const [infor, setInfor] = useState('');
@@ -49,25 +52,38 @@ const EditProfile = (props) => {
     }, [])
 
 
+
     const update = () => {
 
         db.collection('users').doc(userAuth).update({
             age: age,
             infor: infor,
             location: location,
-            gender : gender,
-            breed : breed
+            gender: gender,
+            breed: breed
         })
-        updateUser(props)
+        // updateUser(props)
+        Alert.alert(
+            "Update your Pet profile",
+            "Please logout to change your Pet profile. ",
+            [
+                {
+                    text: "Ok",
+                    onPress: () => {
+                        setModalVisible(!modalVisible)
 
-        setModalVisible(!modalVisible)
+
+                    },
+                },
+            ],
+            { cancelable: false }
+        );
+
 
     }
 
 
     return (
-
-
         <View >
 
             <Modal

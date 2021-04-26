@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ImageBackground, Text, TouchableOpacity } from 'react-native';
+import { View, ImageBackground, Text, TouchableOpacity,Alert } from 'react-native';
 
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 import City from '../components/City';
@@ -61,6 +61,19 @@ const Home = (props) => {
       match: firebase.firestore.FieldValue.arrayUnion(userAuth)
     })
     console.log("swipe right")
+    // Alert.alert(
+    //   "Match!",
+    //   "If you cannot find the Cat that you Match please restart your applciation.",
+    //   [
+    //     // {
+    //     //   text: "Cancel",
+    //     //   onPress: () => console.log("Cancel Pressed"),
+    //     //   style: "cancel"
+    //     // },
+    //     { text: "OK", onPress: () => console.log("OK Pressed") }
+    //   ]
+    // );
+
     this.swiper.swipeRight()
     // console.log("uid:", n)
     // console.log(x.docs)
@@ -130,13 +143,14 @@ const Home = (props) => {
         </View>
         {users.length ? (
           <CardStack
-          style={{flex:1}}
+            style={{ flex: 1 }}
             loop={true}
             verticalSwipe={true}
             horizontalSwipe={true}
             ref={swiper => (this.swiper = swiper)}
             disableRightSwipe={true}
             
+
           // onSwipedLeft={handleSwipeLeft}
           // onSwipedRight={handleSwipeRight}
           >
@@ -144,7 +158,7 @@ const Home = (props) => {
           </CardStack>
 
         ) : null}
-        
+
       </View>
     </ImageBackground>
   );

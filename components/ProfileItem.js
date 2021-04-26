@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import styles from '../assets/styles';
 
 import { Text, View } from 'react-native';
@@ -7,116 +7,94 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Profile from '../containers/Profile';
 
 import { connect } from 'react-redux'
-import Firebase from '../config/Firebase'
+import Firebase, { db } from '../config/Firebase'
 import { bindActionCreators } from 'redux'
 import { updateEmail, updatePassword, signup, updatePetname, updateLocation, updateAge, updateInfor, updateGender, updateBreed, updateImage } from '../actions/user'
+import { set } from 'lodash';
 
 
 
-class ProfileItem extends React.Component {
+const ProfileItem = () => {
 
+  const [age, setAge] = useState('');
+  const [infor, setInfor] = useState('');
+  const [location, setLocation] = useState('');
+  const [petname, setPetname] = useState('');
+  const [breed, setBreed] = useState('');
+  const [gender, setGender] = useState('');
 
+  useEffect(() => {
+    const userAuth = Firebase.auth().currentUser.uid
 
-  // petname = this.props.user.petname
-  // age = this.props.user.age
-  // location = this.props.user.location
-  // gender = this.props.user.gender
-  // breed = this.props.user.breed
-  // infor = this.props.user.infor
+    db.collection("users")
+      .doc(userAuth)
+      .get()
+      .then(doc => {
+        console.log(doc.data())
+        // setImage(doc.data().image)
+        setPetname(doc.data().petname)
+        setBreed(doc.data().breed)
+        setLocation(doc.data().location)
+        setGender(doc.data().gender)
+        setAge(doc.data().age)
+        setInfor(doc.data().age)
 
+      })
+    // console.log("Props", props.image)
 
-  render() {
-    // console.log(this.props.user.petname)
-    // console.log(this.props.user.age)
-    // console.log(this.props.user.location)
-    // console.log(this.props.user.gender)
-    // console.log(this.props.user.breed)
-    // console.log(this.props.user.infor)
+    // setImage(props.image)
+  })
 
+  return (
+    <View style={styles.containerProfileItem}>
+      <View style={styles.ProfileItem}>
+        <Text style={styles.TextProfileItem}>
+          {breed}
+          {/* <Icon name="heart" /> {matches}% Match! */}
+        </Text>
+      </View>
 
-    return (
-      <View style={styles.containerProfileItem}>
-        <View style={styles.ProfileItem}>
-          <Text style={styles.TextProfileItem}>
-            {this.props.user.breed}
-            {/* <Icon name="heart" /> {matches}% Match! */}
-          </Text>
-        </View>
-
-        {/* <View style={styles.matchesCardItem}>
+      {/* <View style={styles.matchesCardItem}>
           <Text style={styles.matchesTextCardItem}>
 
           </Text>
         </View> */}
 
-        <Text style={styles.name}>{this.props.user.petname}</Text>
+      <Text style={styles.name}>{petname}</Text>
 
-        <Text style={styles.descriptionProfileItem}>
-          Live in {this.props.user.location}
+      <Text style={styles.descriptionProfileItem}>
+        Live in {location}
+      </Text>
+
+      <View style={styles.info}>
+        <Text style={styles.iconProfile}>
+          <Icon name="pets" />
         </Text>
-
-        <View style={styles.info}>
-          <Text style={styles.iconProfile}>
-            <Icon name="pets" />
-          </Text>
-          <Text style={styles.infoContent}>Age: {this.props.user.age}</Text>
-        </View>
-        <View style={styles.info}>
-          <Text style={styles.iconProfile}>
-            <Icon name="pets" />
-          </Text>
-          <Text style={styles.infoContent}>Gender: {this.props.user.gender}</Text>
-        </View>
-        <View style={styles.info}>
-          <Text style={styles.iconProfile}>
-            <Icon name="pets" />
-          </Text>
-          <Text style={styles.infoContent}>Breed: {this.props.user.breed}</Text>
-        </View>
-        <View style={styles.info}>
-          <Text style={styles.iconProfile}>
-            <Icon name="pets" />
-          </Text>
-          <Text style={styles.infoContent}>Activity: {this.props.user.infor}</Text>
-        </View>
-
-        {/* <View style={styles.info}>
-          <Text style={styles.iconProfile}>
-            <Icon name="fiber-manual-record" />
-          </Text>
-          <Text style={styles.infoContent}>sadf</Text>
-        </View>
-
-        <View style={styles.info}>
-          <Text style={styles.iconProfile}>
-            <Icon name="fiber-manual-record" />
-          </Text>
-          <Text style={styles.infoContent}>sadf</Text>
-        </View>
-
-        <View style={styles.info}>
-          <Text style={styles.iconProfile}>
-            <Icon name="priority-high" />
-          </Text>
-          <Text style={styles.infoContent}>asdf</Text>
-        </View> */}
+        <Text style={styles.infoContent}>Age: {age}</Text>
+      </View>
+      <View style={styles.info}>
+        <Text style={styles.iconProfile}>
+          <Icon name="pets" />
+        </Text>
+        <Text style={styles.infoContent}>Gender: {gender}</Text>
+      </View>
+      <View style={styles.info}>
+        <Text style={styles.iconProfile}>
+          <Icon name="pets" />
+        </Text>
+        <Text style={styles.infoContent}>Breed: {breed}</Text>
+      </View>
+      <View style={styles.info}>
+        <Text style={styles.iconProfile}>
+          <Icon name="pets" />
+        </Text>
+        <Text style={styles.infoContent}>Activity: {infor}</Text>
       </View>
 
-    )
-  }
+    </View>
+  )
 
 }
-// const ProfileItems = ({
-
-//   age,
-//   // name,
-//   info1,
-//   info2,
-//   info3,
-//   info4,
-//   location,
-//   matches,
-// }) => {
 
 
 const mapStateToProps = state => {

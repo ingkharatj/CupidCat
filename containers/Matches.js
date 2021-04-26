@@ -19,6 +19,8 @@ import 'firebase/firestore'
 
 import _ from "lodash";
 import { set } from 'react-native-reanimated';
+import { Badge, withBadge } from 'react-native-elements'
+
 
 const matches = (props) => {
   const { navigation } = props
@@ -96,9 +98,6 @@ const matches = (props) => {
       console.log("Match: ", arr)
 
 
-
-
-
       // await db.collection("users")
       //   .where("uid", '==', userAuth)
       //   .get()
@@ -150,10 +149,16 @@ const matches = (props) => {
 
   const startChat = async (item) => {
     navigation.navigate('Message', {
-      petname: item.petname,
       uid: item.uid,
       auth_uid: auth,
-      image: item.image
+
+      petname: item.petname,
+      image: item.image,
+      location: item.location,
+      gender: item.gender,
+      infor: item.infor,
+      breed: item.breed,
+      age: item.age
     })
 
   }
@@ -180,11 +185,19 @@ const matches = (props) => {
               <TouchableOpacity
                 onPress={() => startChat(item)}
               >
+
+                {/* <Badge
+                  status="error"
+                  badgeStyle={{ height: 15, width: 15, borderRadius: 10 }}
+                  containerStyle={{ position: 'absolute', top: 0, right: 0 }}
+                /> */}
+
+
+
                 <CardItem
                   image={{ uri: item.image }}
                   petname={item.petname}
                   breed={item.breed}
-                  // status={item.status}
                   variant
                 />
               </TouchableOpacity>
@@ -198,3 +211,4 @@ const matches = (props) => {
 };
 
 export default matches;
+
