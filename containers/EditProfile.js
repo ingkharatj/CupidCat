@@ -132,6 +132,7 @@ const EditProfile = (props) => {
                                 placeholder="Your location"
                                 value={location}
                                 // onChangeText={location => this.props.updateLocation(location)}
+                                onChangeText={location => setLocation(location)}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 placeholder="  Province"
@@ -148,7 +149,7 @@ const EditProfile = (props) => {
                                 }}
                                 placeholder=" Gender"
                                 value={gender}
-                                // onChangeText={gender => this.props.updateGender(gender)}
+                                onChangeText={gender => setGender(gender)}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                             />
@@ -164,7 +165,7 @@ const EditProfile = (props) => {
                                 }}
                                 placeholder=" Breed"
                                 value={breed}
-                                // onChangeText={breed => this.props.updateBreed(breed)}
+                                onChangeText={breed => setBreed(breed)}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                             />
@@ -179,7 +180,7 @@ const EditProfile = (props) => {
                                     left: 15
                                 }}
                                 value={infor}
-                                // onChangeText={infor => this.props.updateInfor(infor)}
+                                onChangeText={infor => setInfor(infor)}
                                 autoCapitalize="none"
                                 autoCorrect={false}
                                 placeholder="  Type your pet information"

@@ -37,7 +37,7 @@ const ProfileItem = () => {
         setLocation(doc.data().location)
         setGender(doc.data().gender)
         setAge(doc.data().age)
-        setInfor(doc.data().age)
+        setInfor(doc.data().infor)
 
       })
     // console.log("Props", props.image)

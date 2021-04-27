@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, ImageBackground, Text, TouchableOpacity,Alert } from 'react-native';
+import { View, ImageBackground, Text, TouchableOpacity, Alert, RefreshControl, ScrollView } from 'react-native';
+import { useIsFocused } from "@react-navigation/native";
 
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 import City from '../components/City';
@@ -17,9 +18,22 @@ import { AGE } from '../actions/user';
 import firebase, { firestore } from "firebase/app";
 import 'firebase/firestore'
 
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 
 
 const Home = (props) => {
+
+  const [refreshing, setRefreshing] = React.useState(false);
+  const isFocused = useIsFocused();
+
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
   // const [swiper, setSwiper] = useState();
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState();
@@ -41,8 +55,12 @@ const Home = (props) => {
         console.error(error);
       }
     };
+    getInitialData();
+
     initialFetchUsers();
-  }, []);
+  }, [props, isFocused]);
+  const getInitialData = async () => { }
+
 
   const handleSwipeRight = (uid) => {
 
@@ -127,6 +145,8 @@ const Home = (props) => {
       style={styles.bg}
     >
       <View style={styles.containerHome}>
+
+
         <View style={styles.top}>
           <City />
           <TouchableOpacity style={styles.logout} onPress={handleSignout}>
@@ -139,17 +159,19 @@ const Home = (props) => {
             </Text>
           </TouchableOpacity>
           <Middle />
+
           {/* <Filters /> */}
         </View>
+
         {users.length ? (
           <CardStack
             style={{ flex: 1 }}
             loop={true}
-            verticalSwipe={true}
+            verticalSwipe={false}
             horizontalSwipe={true}
             ref={swiper => (this.swiper = swiper)}
             disableRightSwipe={true}
-            
+
 
           // onSwipedLeft={handleSwipeLeft}
           // onSwipedRight={handleSwipeRight}

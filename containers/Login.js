@@ -16,9 +16,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { updateEmail, updatePassword, login } from '../actions/user'
 
-import { LogBox } from 'react-native';
+// import { LogBox } from 'react-native';
 
-LogBox.ignoreAllLogs();
+// LogBox.ignoreAllLogs();
 
 
 

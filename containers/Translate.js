@@ -16,6 +16,7 @@ import ProfileItem from '../components/ProfileItem';
 import Icon from '../components/Icon';
 import { WebView } from 'react-native-webview';
 import { Component } from 'react';
+import Recorder from '../components/Recorder'
 
 let padToTwo = (number) => (number <= 9 ? `0${number}` : number);
 
@@ -39,7 +40,7 @@ class Translate extends Component {
 
   showFeeling = () => {
     // this.setState({ feel: "hello" })
-    this.setState({feel : "Feel well"})
+    this.setState({ feel: "Feel well" })
 
     console.log(this.state.cal)
 
@@ -235,9 +236,12 @@ class Translate extends Component {
             </Pressable>
 
           </View>
+          {/* <Recorder/> */}
+
 
           <View style={{ marginLeft: 30, marginTop: 30, flexDirection: "row" }}>
             <View style={{ backgroundColor: "#7BD4E8", borderRadius: 10, padding: 10 }}>
+
 
               <Text style={{ fontSize: 20, marginRight: 10, fontWeight: "bold" }}>Feel:</Text>
               <Text
@@ -253,6 +257,8 @@ class Translate extends Component {
         </View>
 
       </View>
+
+
 
     )
   }

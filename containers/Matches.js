@@ -8,8 +8,11 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
-  FlatList
+  FlatList,
+  RefreshControl,
+
 } from 'react-native';
+import { useIsFocused } from "@react-navigation/native";
 import CardItem from '../components/CardItem';
 import Icon from '../components/Icon';
 import Firebase, { db } from '../config/Firebase';
@@ -21,9 +24,19 @@ import _ from "lodash";
 import { set } from 'react-native-reanimated';
 import { Badge, withBadge } from 'react-native-elements'
 
-
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 const matches = (props) => {
   const { navigation } = props
+  const isFocused = useIsFocused();
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
 
 
   const [users, setUsers] = useState([]);
@@ -137,13 +150,16 @@ const matches = (props) => {
       }
 
     };
+    getInitialData();
     a();
     findmatch();
     initialFetchUsers();
+    
     // getMatch();
     // getUid();
 
-  }, []);
+  }, [props, isFocused]);
+  const getInitialData = async () => {} 
   const matchUser = users.filter((user) => arr[0].includes(user.uid) && user.uid != auth)
 
 
@@ -173,7 +189,13 @@ const matches = (props) => {
           <Text style={styles.title}>Matches</Text>
 
         </View>
-        <ScrollView>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }>
 
 
           <FlatList
