@@ -22,6 +22,8 @@ const ProfileItem = () => {
   const [petname, setPetname] = useState('');
   const [breed, setBreed] = useState('');
   const [gender, setGender] = useState('');
+  const route = useRoute();
+
 
   useEffect(() => {
     const userAuth = Firebase.auth().currentUser.uid

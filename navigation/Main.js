@@ -16,6 +16,7 @@ import MessagesScreen from "../containers/Messages";
 
 import React, { Component } from 'react';
 import ShowProfileScreen from '../containers/ShowProfile';
+import ShowCertified from '../containers/Cerified'
 
 
 const Main = () => {
@@ -65,6 +66,14 @@ const Main = () => {
             headerShown: false
           }}
         />
+        <Stack.Screen
+          name="ShowCertified"
+          component={ShowCertified}
+          options={{
+            headerShown: false
+          }}
+        />
+
 
         <Stack.Screen
           name="Add"

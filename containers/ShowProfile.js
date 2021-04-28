@@ -20,7 +20,8 @@ import ProfileItem from '../components/ProfileItem';
 import Add from '../components/Add';
 // import Icon from '../components/Icon';
 import { set } from 'react-native-reanimated';
-import Firebase from '../config/Firebase'
+import Firebase, { db } from '../config/Firebase'
+
 
 
 
@@ -36,6 +37,22 @@ const ShowProfileScreen = (props) => {
     const gender = route.params.gender
     const breed = route.params.breed
     const image = route.params.image
+    
+
+    useEffect(() => {
+        const userAuth = Firebase.auth().currentUser.uid
+    
+        db.collection("users")
+          .doc(userAuth)
+          .get()
+          .then(doc => {
+            console.log(doc.data())
+            setImage(doc.data().image)
+          })
+        // console.log("Props", props.image)
+    
+        // setImage(props.image)
+      })
 
 
     return (
@@ -58,6 +75,7 @@ const ShowProfileScreen = (props) => {
                 <ImageBackground style={styles.photo} source={{ uri: image }} >
 
 
+
                     <View style={styles.top}>
                         <TouchableOpacity>
                             <Text style={styles.topIconLeft}>
@@ -67,6 +85,7 @@ const ShowProfileScreen = (props) => {
 
 
                     </View>
+
                 </ImageBackground>
 
                 <View style={styles.containerProfileItem}>
@@ -113,6 +132,13 @@ const ShowProfileScreen = (props) => {
                         </Text>
                         <Text style={styles.infoContent}>Activity: {infor}</Text>
                     </View>
+                    <TouchableOpacity style={styles.roundedButton}
+                    onPress={() => navigation.navigate('ShowCertified')} 
+                    >
+                        <Text style={styles.textButton}> Show Certified Pedigree
+              {/* <Icon name="optionsH" /> */}
+                        </Text>
+                    </TouchableOpacity>
 
                 </View>
 
