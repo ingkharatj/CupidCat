@@ -11,6 +11,7 @@ import Firebase, { db } from '../config/Firebase'
 import { bindActionCreators } from 'redux'
 import { updateEmail, updatePassword, signup, updatePetname, updateLocation, updateAge, updateInfor, updateGender, updateBreed, updateImage } from '../actions/user'
 import { set } from 'lodash';
+import { useRoute } from "@react-navigation/native";
 
 
 
